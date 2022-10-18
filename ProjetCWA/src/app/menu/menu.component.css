@@ -1,0 +1,66 @@
+/* CSS de Menu*/
+div.Row1
+{
+    display:grid;
+    grid-template-columns:3fr 6fr 3fr;
+    grid-column-gap: 20px;
+}
+
+ul.block_menu
+{
+    display:flex;
+    list-style-type:none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    border-bottom: 2px solid rgb(97, 167, 140);
+}
+/*CSS pour le logo*/
+div.block_logo
+{
+    padding-left: 20%;
+    display: flex;
+    align-items: center;
+
+}
+
+div.block_search
+{
+    padding-left: 20% ;
+}
+div.block_search_inner
+{
+    padding:0 20px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between ;
+    margin: 5% 0;
+    height: 50%;
+    width: 50%;
+    border: 1px solid grey;
+    border-radius: 20px;
+}
+
+input.event_search
+{
+    border: none;
+    border-right: 1px solid black;
+    width: 60%;
+    height: 70%;
+
+} 
+p.shop_name
+{
+    font-weight: bolder;
+    transform: translateY(-2px);
+    font-size: 20px;
+}
+p.shop_logo{
+    color: rgb(128, 177, 55);
+    font-size: 20px;
+}
+
+li.menu_item a{
+    text-decoration: unset;
+    color: black;
+}

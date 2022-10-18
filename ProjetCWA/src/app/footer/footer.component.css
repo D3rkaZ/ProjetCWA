@@ -1,0 +1,32 @@
+div.footer
+{
+    /* background-color: rgb(132, 177, 143); */
+    height: 15em;
+    color: #44571f;
+}
+ul.footer_option{
+    display: flex;
+    list-style-type: none;
+    width: 60%;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+
+ul.footer_option li{
+    line-height: 0.2;
+}
+p.footer_option_icon{
+    text-align: center;
+    font-size: 25px;
+}
+ul.list_socialnetwork
+{
+    list-style-type: none;
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    margin:0 auto;
+    font-size: 25px;
+}

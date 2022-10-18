@@ -1,0 +1,138 @@
+
+* {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+div.Grid_Home{
+    height:150vh;
+    font-family:'Comic Sans MS', cursive;
+}
+
+/* CSS ROW2 (Slogan1) de la page HOME*/
+div.Row2_Home{
+    display: grid;
+    padding: 0 15%;
+    grid-template-columns:5fr 5fr;
+    grid-column-gap: 20px;
+    padding-top :2%;
+    height: 20em ;
+}
+
+img.row2_image
+{
+    position: absolute;
+    right:15%;
+    height: 400px;
+    object-fit: cover;
+}
+img.row2_image{
+    box-shadow: 10px -10px  rgb(132, 177, 143);
+}
+img.row3_image{
+    box-shadow: -15px 15px  white;
+}
+.bolder_title_row2
+{
+    font-size: 50px;
+}
+
+.slogan_row2
+{
+    font-style: oblique;
+    color: rgb(175, 174, 174);
+}
+
+div.row2_inner
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+}
+button.row2_btn
+{
+    width: 20%;
+    height: 3em;
+    color: white;
+    background-color: rgb(97, 167, 140);
+}
+
+/*CSS ROW3 (Slogan2) de la page HOME*/
+
+div.Row3_Home{
+    display: grid;
+    grid-template-columns:5fr 5fr;
+    grid-column-gap: 20px;
+    align-items: center;
+    background-color:  rgb(132, 177, 143) ;
+    height:40em;
+}
+
+img.row3_image
+{
+    height: 350px;
+    object-fit: cover;
+}
+
+.bolder_title_row3
+{
+    font-size: 60px;
+    color:white
+}
+
+
+.slogan_row3
+{
+    font-style: oblique;
+    color: rgb(235, 230, 230);
+    
+}
+
+div.row3_inner,div.row3_image{
+    margin: 0 auto;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* CSSS ROW4 (Type de thé) de la page HOME*/
+
+div.Row4_Home
+{
+    color: #546a2a;
+    height: 15em;
+}
+ul.row4_list_tea
+{
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px ;
+    list-style-type: none;
+    text-transform: uppercase;
+}
+i.bx-right-arrow-alt
+{
+    transform: translateY(2px);
+}
+ul.row4_list_tea p{
+    text-align: center;
+}
+
+p.row4_type
+{
+    text-align: center;
+    font-size: 30px;
+}
+
+div.row4_contenue{
+    height: 80%;
+    background-color: #f1f4f0;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+

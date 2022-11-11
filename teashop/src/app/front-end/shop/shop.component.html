@@ -10,12 +10,21 @@
             </div>
         </div>
         <div class="row2_shop_mini-menu">
-            <div style="display:flex; width:20%;justify-content:space-between">
+            <div class="nb_produit">
                 <p>Accueil > Thés</p>
                 <p>2000 Produits</p>
             </div>
             <button class="btn_filtre" (click)="changeDisplay()">Filtre <span><i [class]= "icon_plus" style="font-weight:bolder;transform:translateY(0.2px);"></i></span></button>
-            <p >Trier par</p>
+            <div class="trie_produit">
+                <p> <span><i class='bx bx-chevrons-down' style="font-size:20px;transform:translateY(3px)"></i></span>Trier par : </p>
+                <select >
+                    <option>Pertinence</option>
+                    <option>Prix décroissant</option>
+                    <option>Prix croissant</option>
+                    <option>Best-Seller</option>
+                    <option>Nouveautés</option>
+                </select>
+            </div>
         </div>
     </div>
     <div [class]="class_row_filter">
@@ -205,4 +214,5 @@
         </div>
     </div>
     <app-footer></app-footer>
+    <app-cart-shop></app-cart-shop>
 </div>

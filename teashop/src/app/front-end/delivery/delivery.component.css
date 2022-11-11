@@ -1,0 +1,167 @@
+div.Row2_delyvery
+{
+    background-color: #f1f4f0;  
+}
+div.Row2_delyvery_inner
+{
+
+    background-color: white;
+    height: 70em;
+    width: 80%;
+    margin: 0 auto;
+}
+div.form_delyvery
+{
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 10em;
+    height: 55em;
+}
+
+ul.progress_bar
+{ 
+    background-color: #f1f4f0;
+    background: linear-gradient(90deg,#546a2a 50%, #f1f4f0 50%);
+    display: flex   ;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    height: 5px;
+    width: 70%;
+    padding: unset;
+    margin: 0 auto;
+    
+}
+li.progress_item{
+    width: 0.8em;
+    height: 0.8em;
+    border: 2px solid #546a2a;
+    border-radius: 10px;
+    background-color: white;
+    color: #546a2a;
+}
+div.block_progess_bar
+{
+    height: 4em;
+    display: flex;
+    align-items: center;
+}
+ul.progress_bar li span{
+   line-height: 3rem;
+}
+ul.progress_bar_contenue
+{
+    display: flex ;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    height: 5px;
+    width: 70%;
+    padding: unset;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+
+li.progress_active
+{
+    background-color: #546a2a;
+    text-decoration: underline;
+}
+
+/* Remplissage des infomations d'utilisateur*/
+div.template_form
+{
+    height: 50em;
+}
+p.form_title
+{
+    border-bottom: 2px solid #546a2a;
+    font-size:2em;
+    font-family: 'Crimson Text',Georgia,'Times New Roman',Times,serif;
+    height: 10%;
+}
+form.delevery
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+}
+div.user_info label
+{
+    display: block;
+    color: rgb(166, 163, 163);
+}
+
+div.user_info input
+{
+    height: 3em;
+    border: none;
+    border-bottom:1px solid rgb(166, 163, 163);
+    width: 95%;
+    padding-left:2%;
+    pointer-events: painted;
+}
+
+/*Résume le panier*/
+
+div.price_template
+{
+    font-size: 1.3em;
+    text-transform: uppercase;
+}
+p.color_gris
+{
+    color: rgb(136, 133, 133) ;
+    font-size: 0.8em;
+}
+.border_text
+{
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+div.items_template ul
+{
+    overflow-y: scroll;
+    height: 15em;
+    list-style-type: none;
+
+}
+button.btn_valdie_info
+{
+    text-transform: uppercase;
+    color: white;
+    background-color: #546a2a;
+    border: none;
+    padding: 0 1%;
+    height: 5em;
+    margin-left: 50%;
+    width: 50%;
+    transform: translateX(-50%);
+}
+
+/* Mobile: width < 740 */
+@media only screen and (max-width:739px)
+{
+    div.template_resume
+    {
+        display: none;
+    }
+    div.form_delyvery
+    {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tablet: width >=740px and width < 1024 px */
+@media only screen and (min-width:740px) and (max-width:1023px)
+{
+
+}
+
+/* PC: width >= 1024px */
+@media only screen and (min-width:1024px)
+{
+
+}

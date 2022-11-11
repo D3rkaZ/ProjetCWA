@@ -1,0 +1,173 @@
+div.Grid_login
+{
+
+}
+
+/* La parite de connection */
+div.Row2_login
+{
+    height:auto;
+    color:#546a2a;
+    background:url(https://images.unsplash.com/photo-1455157823797-3019317cbcf0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 3% 0;
+}
+div.Row2_login_inner{
+    margin: 2% 20%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -15px 15px lightgrays;
+    background-color: white;
+}
+div.Row2_login_presente
+{
+    display:Grid;
+    grid-template-columns:1fr 1fr ;   
+    text-align: center;
+    background-color:  lightgrey;
+    color:white;
+    border: 1px solid lightgray;
+    border-bottom: none;
+    text-transform: uppercase;
+    
+}
+div.block_connection_switch,div.block_creation_switch
+{
+    background-color: white;
+    color:#546a2a;
+    border-top: 2px solid rgb(65, 89, 71) ;
+}   
+div.Row2_login_form
+{
+    border: 1px solid lightgrey; 
+    border-top: none;
+    height: 30em;
+}
+
+div.form_connection
+{
+    width: 80%;
+    height: 25em;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #546a2a;
+}
+
+div.form_connection form
+{
+    width: 60%;
+    margin: 0 auto;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+p.attention
+{
+    padding-top: 5%;
+    height: 10%;
+    font-size: 0.8em;
+    text-align: center;
+    font-style: oblique;
+
+}
+form.connection div input
+{
+    height: 100%;
+    display: block;
+    width: 95%;
+    border: none;
+    border-bottom:1px solid rgb(132, 177, 143) ;
+    padding-left: 1em;
+}
+
+button.btn_connection
+{
+    height: 3em;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: white;
+    border: none;
+    background-color: rgb(132, 177, 143);
+}
+
+div.form_connection_switch,div.form_creation_switch
+{
+    display: none;
+}
+
+/* La partie de la création*/
+div.form_creation
+{
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+
+    color: #546a2a;
+}
+
+div.form_creation form
+{
+    width: 60%;
+    margin: 0 auto;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+form.creation div input
+{
+    height: 100%;
+    display: block;
+    width: 95%;
+    border: none;
+    border-bottom:1px solid rgb(132, 177, 143) ;
+    padding-left: 1em;
+}
+
+div.Row2_login_form_creation
+{
+    border: 1px solid lightgrey; 
+    border-top: none;
+    height: 55em;
+}
+
+/* Mobile: width < 740 */
+@media only screen and (max-width:739px)
+{
+    p.attention
+    {
+        font-size: 8px;
+    }
+    div.form_connection,div.form_creation
+    {
+        width: 90%;
+    }
+    div.form_connection form, div.form_creation form
+    {
+        width: 80%;
+    }
+}
+
+/* Tablet: width >=740px and width < 1024 px */
+@media only screen and (min-width:740px) and (max-width:1023px)
+{
+    div.form_connection form, div.form_creation form
+    {
+        width: 80%;
+    }
+}
+
+/* PC: width >= 1024px */
+@media only screen and (min-width:1024px)
+{
+
+
+}

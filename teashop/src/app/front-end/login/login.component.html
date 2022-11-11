@@ -1,0 +1,74 @@
+<div class="Grid_login">
+    <app-menu></app-menu>
+    <div class="Row2_login">
+        <div class="Row2_login_inner">
+            <div class="Row2_login_presente">
+                <div [class]="block_connection" (click)="changeOptionConnection()"> 
+                    <p>Me Connecter</p>
+                </div>
+                <div [class]="block_creation" (click)="changeOptionCreation()">
+                    <p>Créer Mon Compte</p>
+                </div>
+            </div>
+            <div [class]="Row2_login_form" >
+                <div [class]="form_connection">
+                    <p class="attention">Si vous avez déjà un compte client en boutique et que vous vous connectez pour la première fois sur notre site internet,
+                        merci de créer un compte avec la même adresse email que celle renseignée en boutique.</p>
+                    <form action="" method="" class="connection">
+                        <div>
+                            <label>Email : </label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label>Mot de passe : </label>
+                            <input type="password">
+                        </div>
+                        <div>
+                            <p style="font-size:12px;text-decoration:underline">Mot de passe oublié ?</p>
+                        </div>
+                        <button class="btn_connection">Me Connecter</button>
+                    </form>
+            
+                </div>
+                <div [class]="form_creation">
+                    <p class="attention">Si vous avez déjà un compte client en boutique et que vous vous connectez pour la première fois sur notre site internet,
+                            merci de créer un compte avec la même adresse email que celle renseignée en boutique.</p>
+                    <form action="" method="" class="creation">
+                        <div style="display:flex;align-items:center">
+                            <input type="radio" style="height:80%">
+                            <label>M</label>
+                            <input type="radio" style="height:80%">
+                            <label>Mme</label>
+                        </div>
+                        <div>
+                            <label>Prénom :</label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label>Nom : </label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label>Date de naissance : </label>
+                            <input type="date">
+                        </div>
+                        <div>
+                            <label>Email : </label>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <label>Mot de passe : </label>
+                            <input type="password">
+                        </div>
+
+                        <button class="btn_connection">Créer mon compte</button>
+                    </form>
+
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

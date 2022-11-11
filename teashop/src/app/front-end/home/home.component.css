@@ -7,7 +7,7 @@
 
 div.Grid_Home{
     height:150vh;
-    font-family:'Comic Sans MS', cursive;
+
 }
 
 /* CSS ROW2 (Slogan1) de la page HOME*/
@@ -136,3 +136,77 @@ div.row4_contenue{
 }
 
 
+/* Mobile: width < 740 */
+@media only screen and (max-width:739px)
+{
+    div.Row2_Home
+    {
+        padding: 5% 5%;
+        height: 17em;
+    }
+    div.Row2_image
+    {
+        text-align: center;
+    }
+    img.row2_image
+    {
+        right:5%;
+        height: 350px;
+        text-align: center;
+    }
+    .bolder_title_row2,.bolder_title_row3
+    {
+        font-size: 40px;
+    }
+    .slogan_row2, .slogan_row3
+    {
+        font-size: 12px;
+    }
+    button.row2_btn
+    {
+        width: 50%;
+    }
+    img.row3_image
+    {
+        height: 250px;
+    }
+    div.Row3_Home
+    {
+        height: 30em;
+        padding: 0 5%;
+    }
+    ul.row4_list_tea
+    {
+        overflow: scroll;
+        font-size: 10px;
+    }
+}
+
+/* Tablet: width >=740px and width < 1024 px */
+@media only screen and (min-width:740px) and (max-width:1023px)
+{
+
+    button.row2_btn
+    {
+        width: 50%;
+    }
+    .slogan_row2, .slogan_row3
+    {
+        font-size: 15px;
+    }
+    div.Row3_Home
+    {
+        padding: 0 5%;
+    }
+    ul.row4_list_tea
+    {
+        overflow: scroll;
+        font-size: 10px;
+    }
+}
+
+/* PC: width >= 1024px */
+@media only screen and (min-width:1024px)
+{
+
+}

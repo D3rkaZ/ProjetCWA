@@ -30,3 +30,33 @@ ul.list_socialnetwork
     margin:0 auto;
     font-size: 25px;
 }
+
+/* Mobile: width < 740 */
+@media only screen and (max-width:739px)
+{
+    ul.footer_option
+    {
+        width: 85%;
+        padding: unset;
+        font-size:12px;
+    }
+
+}
+
+/* Tablet: width >=740px and width < 1024 px */
+@media only screen and (min-width:740px) and (max-width:1023px)
+{
+    ul.footer_option
+    {
+        width: 80%;
+        padding: unset;
+        
+    }
+
+}
+
+/* PC: width >= 1024px */
+@media only screen and (min-width:1024px)
+{
+
+}

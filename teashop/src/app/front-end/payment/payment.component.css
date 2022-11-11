@@ -1,0 +1,241 @@
+/* Inner page*/
+div.Row2_payment
+{
+    background-color: #f1f4f0;  
+}
+div.Row2_payment_inner
+{
+
+    background-color: white;
+    height: 70em;
+    width: 80%;
+    margin: 0 auto;
+}
+
+div.form_payment
+{
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 7em;
+    height: 55em;
+}
+
+p.form_title
+{
+    border-bottom: 2px solid #546a2a;
+    font-size:2em;
+    font-family: 'Crimson Text',Georgia,'Times New Roman',Times,serif;
+    height: 10%;
+}
+
+/* Progress Bar */
+
+ul.progress_bar
+{
+    background-color:#546a2a;
+    display: flex   ;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    height: 5px;
+    width: 70%;
+    padding: unset;
+    margin: 0 auto;
+    
+}
+li.progress_item{
+    width: 0.8em;
+    height: 0.8em;
+    border: 2px solid #546a2a;
+    border-radius: 10px;
+    background-color: white;
+    color: #546a2a;
+}
+div.block_progess_bar
+{
+    height: 4em;
+    display: flex;
+    align-items: center;
+}
+
+ul.progress_bar li span{
+   line-height: 3rem;
+}
+
+ul.progress_bar_contenue
+{
+    display: flex ;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    height: 5px;
+    width: 70%;
+    padding: unset;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+
+li.progress_active
+{
+    background-color: #546a2a;
+    text-decoration: underline;
+}
+
+/*2 blocks Paiement / Resume */
+div.price_template
+{
+    font-size: 1.3em;
+    text-transform: uppercase;
+}
+p.color_gris
+{
+    color: rgb(136, 133, 133) ;
+    font-size: 0.8em;
+}
+.border_text
+{
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+div.items_template ul
+{
+    overflow-y: scroll;
+    height: 15em;
+    list-style-type: none;
+}
+
+/* Mode de paiement*/
+div.template_payment_inner
+{
+    height: 50em;
+}
+
+div.method_payment
+{
+    height: 60%;
+    border: 1px solid lightgray;
+}
+
+p.title
+{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+div.info_user
+{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border :2px solid #546a2a;
+}
+form.payment
+{
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+div.title_block
+{
+    background-color:#f0f4ef;
+    padding: 0 3%;
+}
+span.txt_underline
+{
+    text-decoration: underline;
+}
+div.info_payment_flex
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap:5em;
+}
+div.info_payment label
+{
+    font-size: 0.8em;
+    display: block;
+}
+div.info_payment input
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding-left: 3%;
+}
+
+
+/* Liste des modes en paiement*/
+
+ul.list_payment_method
+{
+    list-style-type:none;
+}
+
+div.title_method{
+    display:flex;
+    align-items: center;
+    height: 5em;
+    padding:unset;
+}
+
+div.title_method p{
+    color:#676767;
+}
+
+img.visa_method
+{
+    width: 15%;
+    object-fit: cover;
+}
+
+div.method
+{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 5em;
+    justify-content: space-between;
+    height: 20em;
+    padding-top: 3%;
+}
+
+li.payment_method_item
+{
+    padding: 2%;
+    height: auto;
+    border-bottom: 1px solid #546a2a;
+}
+
+div.paypal
+{
+    height: 10em;
+}
+
+/* Button valider de commande*/
+
+div.btn_paypal
+{
+    text-align: center;
+    background-color: #ffc439;
+    height: 2em;
+    width: 15em;
+    padding: 5%;
+}
+
+button.btn_ecart
+{
+    text-align: center;
+    background-color: #546a2a;
+    height: 4em;
+    width: 15em;
+    padding: 5%;
+    color: white;
+    border: none;
+}
+
+/* Change mode du paiement*/
+div.block_none
+{
+    display: none;
+}

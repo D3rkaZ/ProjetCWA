@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Tea } from 'src/app/shared/modele/tea';
 
 @Component({
   selector: 'app-shop',

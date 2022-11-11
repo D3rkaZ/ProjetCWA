@@ -98,6 +98,11 @@ div.row3_inner,div.row3_image{
     justify-content: space-between;
 }
 
+p.row3_shop
+{
+    cursor: pointer;
+}
+
 /* CSSS ROW4 (Type de thé) de la page HOME*/
 
 div.Row4_Home

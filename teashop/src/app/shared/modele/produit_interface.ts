@@ -1,0 +1,22 @@
+export interface Produit_Interface
+{
+    getIdProduit():number;
+    getName():string;
+    getTitre():string;
+    getUrl():string;
+    getType():string;
+    getDescription():string;
+    getCountry():string;
+    getPrix():number;
+    getPrepare():string;
+    setIdProduit(id:number):void;
+    setName(name:string):void;
+    setTitre(titre:string):void;
+    setUrl(url:string):void;
+    setType(type:string):void;
+    setParfum(parfum:string):void;
+    setCountry(county:string):void;
+    setPrix(prix:number):void;
+    setDescription(desc:string):void;
+    setPrepare(prepare:string):void;
+}

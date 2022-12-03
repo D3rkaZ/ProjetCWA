@@ -1,16 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Tea } from 'src/app/shared/modele/tea';
+import { ProduitsService } from '../../shared/service/produits.service';
+import { CommandeService } from '../../shared/service/commande.service';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
+
 export class ShopComponent implements OnInit {
  
   public class_row_filter:string = "Row_filter_display-none";
   public icon_plus = "bx bx-plus";
-  constructor() {
+  constructor(private p:ProduitsService) {
   
   }
   changeDisplay()

@@ -5,13 +5,20 @@ import { Produit_Interface } from '../modele/produit_interface';
 import { Database } from 'sqlite3';
 import * as fs from 'fs';
 
+
+const express = require('express'),
+path = require('path'),
+bodyParser = require('body-parser'),
+cors = require('corp'),
+sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('../../shared/')
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitsService {
 
-  private  db:any = new Database('./projetCWA.db');
-  private static fs = require('file-system');
+  //private  db:any = new Database('./projetCWA.db');
+  //private static fs = require('file-system');
   constructor()
   {}
   /* Créer un Instance singleton */
@@ -54,56 +61,56 @@ export class ProduitsService {
       //         );
       // });
 
-      return new Promise((resolve,reject)=>
-      {
-          let res :number =0;
-          this.db.all("Select * from Produits",function(err:any,rows:any)
-          {
-              for(var row in rows)
-              {
-                  res += rows[row].id;
-              }
-          })   
-          resolve(res);
-      });
-  }
+//       return new Promise((resolve,reject)=>
+//       {
+//           let res :number =0;
+//           this.db.all("Select * from Produits",function(err:any,rows:any)
+//           {
+//               for(var row in rows)
+//               {
+//                   res += rows[row].id;
+//               }
+//           })   
+//           resolve(res);
+//       });
+//   }
  
-  public executeSQL()
-  {
-      return new Promise((resolve)=>
-      {
-          let liste_produits:Produit[]=[];
-         this.db.all('Select * from produits',(err:any,rows:any)=>
-              {
-                  for (var row in rows)
-                  {
-                      let p:Produit = new Produit(
-                          rows[row].id,
-                          rows[row].nom,
-                          rows[row].titre,
-                          rows[row].url,
-                          rows[row].type,
-                          rows[row].parfum,
-                          rows[row].pays,
-                          rows[row].prix,
-                          rows[row].desciption,
-                          rows[row].suggestion
-                          );
-                      liste_produits.push(p);
+//   public executeSQL()
+//   {
+//       return new Promise((resolve)=>
+//       {
+//           let liste_produits:Produit[]=[];
+//          this.db.all('Select * from produits',(err:any,rows:any)=>
+//               {
+//                   for (var row in rows)
+//                   {
+//                       let p:Produit = new Produit(
+//                           rows[row].id,
+//                           rows[row].nom,
+//                           rows[row].titre,
+//                           rows[row].url,
+//                           rows[row].type,
+//                           rows[row].parfum,
+//                           rows[row].pays,
+//                           rows[row].prix,
+//                           rows[row].desciption,
+//                           rows[row].suggestion
+//                           );
+//                       liste_produits.push(p);
                   
-                  }
-                  resolve(liste_produits);
-              }
-              );
-      });
-  }
+//                   }
+//                   resolve(liste_produits);
+//               }
+//               );
+//       });
+//   }
 
-  public getAll()
-  {
-      return this.executeSQL().then(
-          function(rows:any){
-              return rows;
-      }
-      )
-  }
+//   public getAll()
+//   {
+//       return this.executeSQL().then(
+//           function(rows:any){
+//               return rows;
+//       }
+//       )
+    }
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProduitsService } from '../../shared/service/produits.service';
 import { CommandeService } from '../../shared/service/commande.service';
 
+
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',

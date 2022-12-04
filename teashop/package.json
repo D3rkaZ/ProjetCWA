@@ -8,6 +8,19 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false,
+    "child_process": false,
+    "dns": false,
+    "tls": false,
+    "mock-aws-s3": false,
+    "aws-sdk": false,
+    "nock": false,
+    "net": false,
+    "npm": false
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.0",
@@ -18,9 +31,13 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.20.1",
     "browserify-zlib": "^0.2.0",
     "constants-browserify": "^1.0.0",
+    "cors": "^2.8.5",
     "crypto-js": "^3.1.9-1",
+    "express": "^4.18.2",
     "file-system": "^2.2.2",
     "path-browserify": "^1.0.1",
     "rxjs": "~7.5.0",
@@ -30,6 +47,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^14.1.0",
     "@angular-devkit/build-angular": "^14.2.1",
     "@angular/cli": "~14.2.1",
     "@angular/compiler-cli": "^14.0.0",
@@ -46,6 +64,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "moment": "^2.29.4",
+    "moment-locales-webpack-plugin": "^1.2.0",
+    "nodemon": "^2.0.20",
     "os-browserify": "^0.3.0",
     "process": "^0.11.10",
     "react-app-rewired": "^2.2.1",
@@ -53,6 +74,14 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "typescript": "~4.7.2",
-    "url": "^0.11.0"
-  }
+    "url": "^0.11.0",
+    "webpack": "^5.75.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.",
+  "main": "karma.conf.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

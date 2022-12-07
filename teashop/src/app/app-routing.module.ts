@@ -8,6 +8,7 @@ import { DeliveryComponent } from './front-end/delivery/delivery.component';
 import { PaymentComponent } from './front-end/payment/payment.component';
 import { ProduitComponent } from './front-end/shop/produit/produit.component';
 import { RecommendProduitComponent } from './front-end/recommend-produit/recommend-produit.component';
+import { AjouteProduitComponent } from './front-end/ajoute-produit/ajoute-produit.component';
 
 const routes: Routes = [
   {
@@ -39,8 +40,8 @@ const routes: Routes = [
     component: ProduitComponent
   },
   {
-    path:'a',
-    component: RecommendProduitComponent
+    path:'ajouteProduit',
+    component: AjouteProduitComponent
   },
   {
     path:'',

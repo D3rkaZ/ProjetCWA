@@ -84,7 +84,6 @@ div.Row_filter
 {
     background-color: #f1f4f0 ;
     margin: unset;
-    display:flex;
     padding:0 2em;
     justify-content:space-between ;
     color: #546a2a;
@@ -96,6 +95,31 @@ div.Row_filter_display-none
 {
     display:none;
 }
+div.inner_filter{
+    display:flex;
+    padding:0 2em;
+    width: 100%;
+}
+
+div.btn_filter
+{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    margin: 0 auto;
+}
+
+.app_filter,.dell_filter
+{
+    height: 3em;
+    width: 10em;
+    background-color:black ;
+    border: none;
+    color: #f1f4f0;
+    font-weight: bolder;
+}
+
+
 ul.list_filter
 {
     margin: 0 auto;
@@ -156,7 +180,8 @@ div.produit_prix
 p.produit_name
 {
     font-family: 'Crimson Text';
-    font-size: 25px;
+    font-size: 17px;
+    text-transform: uppercase;
 }
 p.produit_couleur
 {

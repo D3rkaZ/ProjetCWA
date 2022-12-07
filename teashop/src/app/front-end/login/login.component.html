@@ -17,16 +17,16 @@
                     <form action="" method="" class="connection">
                         <div>
                             <label>Email : </label>
-                            <input type="text">
+                            <input type="text" name="email" [(ngModel)]="email">
                         </div>
                         <div>
                             <label>Mot de passe : </label>
-                            <input type="password">
+                            <input type="password" name="password" [(ngModel)]="mdp">
                         </div>
                         <div>
                             <p style="font-size:12px;text-decoration:underline">Mot de passe oublié ?</p>
                         </div>
-                        <button class="btn_connection">Me Connecter</button>
+                        <button class="btn_connection" (click)="login()">Me Connecter</button>
                     </form>
             
                 </div>
@@ -35,33 +35,33 @@
                             merci de créer un compte avec la même adresse email que celle renseignée en boutique.</p>
                     <form action="" method="" class="creation">
                         <div style="display:flex;align-items:center">
-                            <input type="radio" style="height:80%">
+                            <input type="radio" style="height:80%" name="sexe">
                             <label>M</label>
-                            <input type="radio" style="height:80%">
+                            <input type="radio" style="height:80%" name="sexe">
                             <label>Mme</label>
                         </div>
                         <div>
                             <label>Prénom :</label>
-                            <input type="text">
+                            <input type="text" name="prenom" [(ngModel)]="prenom">
                         </div>
                         <div>
                             <label>Nom : </label>
-                            <input type="text">
+                            <input type="text" name="nom" [(ngModel)]="nom">
                         </div>
                         <div>
                             <label>Date de naissance : </label>
-                            <input type="date">
+                            <input type="date" name="datenaissance" [(ngModel)]="date_naissance">
                         </div>
                         <div>
                             <label>Email : </label>
-                            <input type="text">
+                            <input type="text" name="email" [(ngModel)]="email">
                         </div>
                         <div>
                             <label>Mot de passe : </label>
-                            <input type="password">
+                            <input type="password" name="mdp" [(ngModel)]="mdp">
                         </div>
 
-                        <button class="btn_connection">Créer mon compte</button>
+                        <button class="btn_connection" (click)="register()">Créer mon compte</button>
                     </form>
 
                     

@@ -13,6 +13,10 @@ import { DeliveryComponent } from './front-end/delivery/delivery.component';
 import { PaymentComponent } from './front-end/payment/payment.component';
 import { ProduitComponent } from './front-end/shop/produit/produit.component';
 import { RecommendProduitComponent } from './front-end/recommend-produit/recommend-produit.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { AjouteProduitComponent } from './front-end/ajoute-produit/ajoute-produit.component';
+import { FormsModule } from '@angular/forms'
 
 
 @NgModule({
@@ -28,11 +32,14 @@ import { RecommendProduitComponent } from './front-end/recommend-produit/recomme
     DeliveryComponent,
     PaymentComponent,
     ProduitComponent,
-    RecommendProduitComponent
+    RecommendProduitComponent,
+    AjouteProduitComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

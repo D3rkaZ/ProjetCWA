@@ -12,141 +12,63 @@
         <div class="row2_shop_mini-menu">
             <div class="nb_produit">
                 <p>Accueil > Thés</p>
-                <p>2000 Produits</p>
+                <p>{{nb_produits}} Produits</p>
             </div>
             <button class="btn_filtre" (click)="changeDisplay()">Filtre <span><i [class]= "icon_plus" style="font-weight:bolder;transform:translateY(0.2px);"></i></span></button>
             <div class="trie_produit">
                 <p> <span><i class='bx bx-chevrons-down' style="font-size:20px;transform:translateY(3px)"></i></span>Trier par : </p>
                 <select >
-                    <option>Pertinence</option>
-                    <option>Prix décroissant</option>
-                    <option>Prix croissant</option>
-                    <option>Best-Seller</option>
-                    <option>Nouveautés</option>
+                    <option [ngValue]="null" disabled>Select Option</option>
+                    <option *ngFor="let option of option_trie" [ngValue]="option" (click)="onChange($event)">{{option}}</option>
                 </select>
             </div>
         </div>
     </div>
     <div [class]="class_row_filter">
-        <div class="color_tea" >
-            <p>Couleur de thé</p>
-            <ul class="list_filter">
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Thé Noir</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Thé Vert</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Thé Blanc</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Matcha</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Infuision</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Rooibos</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>OOlong</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Maté</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Matcha</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Pur Erh</label>
-                </li>
-                
-            </ul>
-        </div>
-
-        <div class="parfum_tea">
-            <p>Parfums</p>
-            <ul class="list_filter">
-                    <li class="list_filter_item">
-                        <input type="checkbox">
-                        <label>Nature</label>
+        <div class="inner_filter">
+            <div class="color_tea" >
+                <p>Couleur de thé</p>
+                <ul class="list_filter" >
+                    <li class="list_filter_item" *ngFor="let type of filter_type">
+                        <input [(ngModel)]="typeFilter" type="radio" [value]="type" name="typeFilter">
+                        <label>{{type}}</label>
                     </li>
-                    <li class="list_filter_item">
-                        <input type="checkbox">
-                        <label>Fruits</label>
-                    </li>
-                    <li class="list_filter_item">
-                        <input type="checkbox">
-                        <label>Agruments</label>
-                    </li>
-                    <li class="list_filter_item">
-                        <input type="checkbox">
-                        <label>Earl Grey</label>
-                    </li>
-                    <li class="list_filter_item">
-                        <input type="checkbox">
-                        <label>Fleurs</label>
-                    </li>
-                    <li class="list_filter_item">
-                        <input type="checkbox">
-                        <label>Menthe</label>
-                    </li>
-                    
-                
+                </ul>
+            </div>
+            <div class="parfum_tea">
+                <p>Parfums</p>
+                <ul class="list_filter">
+                    <li class="list_filter_item" *ngFor="let parfum of filter_parfum,let index">
+                        <input [(ngModel)]="parfumFilter" type="radio"  [value]="parfum" name="parfumFilter" >
+                        <label>{{parfum}}</label>
+                    </li>    
+                </ul>
     
-            </ul>
-
+            </div>
+    
+            <div class="country_tea">
+                <p>Pays d'origine</p>
+                <ul class="list_filter">
+                    <li class="list_filter_item" *ngFor="let pays of filter_pays">
+                        <input [(ngModel)]="paysFilter" type="radio"  [value]="pays"  name="paysFilter">
+                        <label>{{pays}}</label>
+                    </li>
+                </ul>
+    
+            </div>
         </div>
-
-        <div class="country_tea">
-            <p>Pays d'origine</p>
-            <ul class="list_filter">
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Chine</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Japon</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Espagne</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Italy</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>Pay-Bas</label>
-                </li>
-                <li class="list_filter_item">
-                    <input type="checkbox">
-                    <label>France</label>
-                </li>
-            </ul>
-
+        <div class="btn_filter">
+            <button class="app_filter" (click)="ProduitsFilter()">Appliquer</button>
+            <button class="dell_filter" (click)="EffacerFilter()">Effacer</button>
         </div>
-
+ 
     </div>
-    <div class="Row3_shop">
+    <div class="Row3_shop" >
         <div class="Row3_shop_produit">
-            <div class="Row3_shop_produit_item">
-                <img class="produit_img" src="https://www.palaisdesthes.com/media/catalog/product/cache/d68f0350dd21afbb7f381fb835e279db/2/2/2251.jpg">
-                <p class="produit_name">Ye Sheng Hong Cha</p>
-                <p class="produit_couleur">Thé noir du YUNAN , Chine</p>
+            <div class="Row3_shop_produit_item"  *ngFor="let produit of produitList">
+                <img class="produit_img" [src]="produit.url">
+                <p class="produit_name">{{produit.nom}}</p>
+                <p class="produit_couleur">{{produit.titre}}</p>
                 <p class="produit_desc">Un Grand Cru aux  gourmand aux notes de chocolat, de vanille, d'amandes et de fruits.</p>
                 <div class="panier_produit">
                     <div class="produit_prix">
@@ -155,58 +77,7 @@
                             <p style="border:1px solid black;width:30px">0</p>
                             <i class='bx bx-plus' ></i>
                         </div>
-                        <p>15.00 €</p>
-                    </div>
-                    <button class="ajoute_panier">AJOUTER AU PANIER</button>
-                </div>
-            </div>
-            <div class="Row3_shop_produit_item">
-                <img class="produit_img" src="https://www.palaisdesthes.com/media/catalog/product/cache/d68f0350dd21afbb7f381fb835e279db/2/2/2251.jpg">
-                <p class="produit_name">Ye Sheng Hong Cha</p>
-                <p class="produit_couleur">Thé noir du YUNAN , Chine</p>
-                <p class="produit_desc">Un Grand Cru aux  gourmand aux notes de chocolat, de vanille, d'amandes et de fruits.</p>
-                <div class="panier_produit">
-                    <div class="produit_prix">
-                        <div style="display: flex;align-items:center;width:30%;justify-content:space-between">
-                            <i class='bx bx-minus' ></i>
-                            <p style="border:1px solid black;width:30px">0</p>
-                            <i class='bx bx-plus' ></i>
-                        </div>
-                        <p>15.00 €</p>
-                    </div>
-                    <button class="ajoute_panier">AJOUTER AU PANIER</button>
-                </div>
-            </div>
-            <div class="Row3_shop_produit_item">
-                <img class="produit_img" src="https://www.palaisdesthes.com/media/catalog/product/cache/d68f0350dd21afbb7f381fb835e279db/2/2/2251.jpg">
-                <p class="produit_name">Ye Sheng Hong Cha</p>
-                <p class="produit_couleur">Thé noir du YUNAN , Chine</p>
-                <p class="produit_desc">Un Grand Cru aux  gourmand aux notes de chocolat, de vanille, d'amandes et de fruits.</p>
-                <div class="panier_produit">
-                    <div class="produit_prix">
-                        <div style="display: flex;align-items:center;width:30%;justify-content:space-between">
-                            <i class='bx bx-minus' ></i>
-                            <p style="border:1px solid black;width:30px">0</p>
-                            <i class='bx bx-plus' ></i>
-                        </div>
-                        <p>15.00 €</p>
-                    </div>
-                    <button class="ajoute_panier">AJOUTER AU PANIER</button>
-                </div>
-            </div>
-            <div class="Row3_shop_produit_item">
-                <img class="produit_img" src="https://www.palaisdesthes.com/media/catalog/product/cache/d68f0350dd21afbb7f381fb835e279db/2/2/2251.jpg">
-                <p class="produit_name">Ye Sheng Hong Cha</p>
-                <p class="produit_couleur">Thé noir du YUNAN , Chine</p>
-                <p class="produit_desc">Un Grand Cru aux  gourmand aux notes de chocolat, de vanille, d'amandes et de fruits.</p>
-                <div class="panier_produit">
-                    <div class="produit_prix">
-                        <div style="display: flex;align-items:center;width:30%;justify-content:space-between">
-                            <i class='bx bx-minus' ></i>
-                            <p style="border:1px solid black;width:30px">0</p>
-                            <i class='bx bx-plus' ></i>
-                        </div>
-                        <p>15.00 €</p>
+                        <p>{{produit.prix}}0 €</p>
                     </div>
                     <button class="ajoute_panier">AJOUTER AU PANIER</button>
                 </div>

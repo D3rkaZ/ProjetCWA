@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
+import { Utilisateur } from '../../shared/modele/utilisateur';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +9,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
-  public block_connection:string = "block_connection_switch";
-  public block_creation:string = "block_creation";
-  public form_connection:string="form_connection";
-  public form_creation:string="form_creation_switch";
-  public Row2_login_form:string="Row2_login_form";
+  block_connection:string = "block_connection_switch";
+  block_creation:string = "block_creation";
+  form_connection:string="form_connection";
+  form_creation:string="form_creation_switch";
+  Row2_login_form:string="Row2_login_form";
+
+  id:string='';
+  nom:string='';
+  prenom:string='';
+  date_naissance='';
+  email:string ="";
+  mdp:string ="";
+
+  utilisateur:Utilisateur = {
+    id:'',
+    nom:'',
+    prenom:'',
+    email:'',
+    mdp:'',
+    date_naissance:'',
+    role:'client',
+  }
+
+  constructor(private auth:AuthLoginService) { }
 
   ngOnInit(): void {
+  }
+  login()
+  {
+    if(this.email=="")
+    {
+      alert("Entrez votre email !");
+      return;
+    }
+    if(this.mdp=="")
+    {
+      alert("Entrez votre mot de passe !");
+      return;
+    }
+
+    this.auth.login(this.email,this.mdp);
+    //console.log(localStorage.getItem("nom"));
+    this.email="";
+    this.mdp="";
+  }
+
+  register()
+  {
+    if(this.nom==''||this.prenom==''||this.date_naissance==''||this.email==''||this.mdp=='')
+    {
+      alert('Fill all in put fields');
+      return;
+    }
   }
 
   changeOptionConnection()

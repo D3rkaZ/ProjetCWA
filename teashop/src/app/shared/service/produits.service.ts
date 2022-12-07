@@ -1,116 +1,60 @@
 import { Injectable } from '@angular/core';
 import { GestionProduit } from '../modele/GestionProduit';
-import { Produit } from '../modele/produit';
 import { Produit_Interface } from '../modele/produit_interface';
-import { Database } from 'sqlite3';
-import * as fs from 'fs';
+import { AngularFirestore} from '@angular/fire/compat/firestore'
+import { Produit } from '../modele/produit';
 
 
-const express = require('express'),
-path = require('path'),
-bodyParser = require('body-parser'),
-cors = require('corp'),
-sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('../../shared/')
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitsService {
-
-  //private  db:any = new Database('./projetCWA.db');
-  //private static fs = require('file-system');
-  constructor()
+  constructor(private database:AngularFirestore)
   {}
-  /* Créer un Instance singleton */
-  // public static getInstance(): any
-  // {
-  //     if(this.db ==null)
-  //     {
-  //         this.db = new Database('./projetCWA.db');
-  //     }
-  //     return this.db;
-  // }
-
-  public static exec(dirname_file :string): void
-  {
-      // try{
-      //     this.getInstance().exec(this.fs.readFileSync(dirname_file).toString());
-      //     }
-      // catch(error){console.error(error);}
-  }
-
-  public  fetch()
-  {
-      // return new Promise((resolve,reject)=>
-      // {
-      //     this.getInstance().all("Select * from Produits").then((rows: any) =>
-      //         {
-      //             let res:number = 0 ;
-      //             console.log("Rows: ", JSON.stringify(rows));
-      //             for(var row in rows)
-      //             {
-      //                 res += rows[row].id;
-      //             }
-      //             resolve(res);
-      //         },
-      //         (error:any) =>
-      //         {
-      //             console.log("SELECT ERROR", error);
-      //             reject(error);
-      //         }
-      //         );
-      // });
-
-//       return new Promise((resolve,reject)=>
-//       {
-//           let res :number =0;
-//           this.db.all("Select * from Produits",function(err:any,rows:any)
-//           {
-//               for(var row in rows)
-//               {
-//                   res += rows[row].id;
-//               }
-//           })   
-//           resolve(res);
-//       });
-//   }
- 
-//   public executeSQL()
-//   {
-//       return new Promise((resolve)=>
-//       {
-//           let liste_produits:Produit[]=[];
-//          this.db.all('Select * from produits',(err:any,rows:any)=>
-//               {
-//                   for (var row in rows)
-//                   {
-//                       let p:Produit = new Produit(
-//                           rows[row].id,
-//                           rows[row].nom,
-//                           rows[row].titre,
-//                           rows[row].url,
-//                           rows[row].type,
-//                           rows[row].parfum,
-//                           rows[row].pays,
-//                           rows[row].prix,
-//                           rows[row].desciption,
-//                           rows[row].suggestion
-//                           );
-//                       liste_produits.push(p);
-                  
-//                   }
-//                   resolve(liste_produits);
-//               }
-//               );
-//       });
-//   }
-
-//   public getAll()
-//   {
-//       return this.executeSQL().then(
-//           function(rows:any){
-//               return rows;
-//       }
-//       )
+    //getCollection 
+    getDatabase()
+    {
+      return this.database;
+    }
+    //get all produits
+    getAllProduits()
+    {
+      return this.database.collection('/Produits').snapshotChanges();
+    }
+    //get Produit by price ASC
+    getProduitByPrix(s:string)
+    {
+      if(s==="Prix croissant")
+      return this.database.collection('/Produits', ref => ref.orderBy("prix","asc")).snapshotChanges();
+      else
+      return this.database.collection('/Produits', ref => ref.orderBy("prix","desc")).snapshotChanges();
+    }
+    //get produits filter
+    getProduitsFilter(map:any,nb:number)
+    {
+     let keys:string[]=[];
+     let values:string[]=[];
+     for(let value of map.values())
+     {
+      if(value!="")
+        values.push(value);
+     }
+     for(let key of map.keys())
+     {
+      if(map.get(key)!="")
+        keys.push(key);
+     }
+      if(nb==3)
+      return this.database.collection('/Produits', ref => ref.where(keys[0], "==",values[0]).where(keys[1], "==",values[1]).where(keys[2], "==",values[2])).snapshotChanges();
+      else if(nb==2)
+      return this.database.collection('/Produits', ref => ref.where(keys[0], "==",values[0]).where(keys[1], "==",values[1])).snapshotChanges();
+      else
+      return this.database.collection('/Produits', ref => ref.where(keys[0], "==",values[0])).snapshotChanges();
+    }
+    //ajoute un produit
+    addProduits(produit : Produit)
+    {
+      produit.id = this.database.createId();
+      return this.database.collection('/Produits').add(produit);
     }
 }

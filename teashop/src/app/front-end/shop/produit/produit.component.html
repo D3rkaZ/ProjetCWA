@@ -4,12 +4,12 @@
         <div class="Row2_produit_inner">
             <div class="info_produit">
                 <div class="img_produit">
-                    <img class="image_pro" src="https://www.palaisdesthes.com/media/catalog/product/cache/50708da259540eeb20337bcdb367a3c9/8/9/898-43112-bv46y3li7u.jpg">
+                    <img class="image_pro" [src]="produitObjet.url">
                 </div>
                 <div class="detail_produit">
                     <div class="title_produit">
-                        <h1>Thé des Moines</h1>
-                        <p class="tea_color">Thé noir</p>
+                        <h1>{{produitObjet.nom}}</h1>
+                        <p class="tea_color">{{produitObjet.type}}</p>
                     </div>
 
                     <div class="poid_produit">
@@ -18,7 +18,7 @@
                         <p>1 kg</p>
                     </div>  
                     <div class="price_produit">
-                        <h3>10,00 €</h3>
+                        <h3>{{produitObjet.prix}}0 €</h3>
                         <div class="control_produit">
                             <i class='bx bx-minus'></i>
                             <p class="qty_produit">0</p>
@@ -52,11 +52,7 @@
             <div class="description_produit">
                 <div>
                     <p class="title">Decription </p>
-                    <p class="contenu">Au Tibet, la légende raconte qu'une communauté de moines préparait dans le plus grand secret un mélange de thé, de plantes et de fleurs. Après quelques jours de macération, les feuilles de thé étaient soigneusement triées et mises de côté.
-
-                        <br>Par cette mystérieuse alchimie, les moines changeaient le thé en or et donnaient au Thé des Moines son parfum exceptionnel.
-                        
-                        <br>Retrouvez ici toute la richesse de ce mélange floral rare, et embarquez dans un voyage sensoriel unique.</p>
+                    <p class="contenu">{{produitObjet.description}}</p>
                 </div>
                 <div>
                     <p class="title">Suggestion de préparation : </p>

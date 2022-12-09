@@ -1,7 +1,7 @@
 <div class="Grid_login">
     <app-menu></app-menu>
-    <div class="Row2_login">
-        <div class="Row2_login_inner">
+    <div class="Row2_login" >
+        <div class="Row2_login_inner"*ngIf="session_connecte != 'true'" >
             <div class="Row2_login_presente">
                 <div [class]="block_connection" (click)="changeOptionConnection()"> 
                     <p>Me Connecter</p>
@@ -69,6 +69,41 @@
 
             </div>
         </div>
+    <div *ngIf="session_connecte == 'true'" class="user_connecte">
+        <div class="user_coordonnes">
+            <label class="coordonnes">Nom : </label>
+            <input type="text" readonly [value]="utilisateur.nom">
+        </div>
+
+        <div class="user_coordonnes">
+            <label class="coordonnes">Prénom : </label>
+            <input type="text" readonly [value]="utilisateur.prenom">
+        </div>
+
+        <div class="user_coordonnes">
+            <label class="coordonnes">Email : </label>
+            <input type="text"  readonly [value]="utilisateur.email">
+        </div>
+
+        <div class="user_coordonnes">
+            <label class="coordonnes">Mot de passe : </label>
+            <input type="password" [value]="utilisateur.mdp" [(ngModel)]="newPassword">
+            <button class="update_password" (click)="updatePassword()">Update</button>
+        </div>
+
+        <div class="user_coordonnes">
+            <label class="coordonnes">Date de naissance : </label>
+            <input type="text" readonly [value]="utilisateur.date_naissance">
+        </div>
+
+        <div class="user_coordonnes">
+            <label class="coordonnes">Rôle : </label>
+            <input type="text" readonly [value]="utilisateur.role">
+        </div>
+
+        <button class="logout" (click)="logout()">Déconnexion</button>
+    </div>
+
     </div>
     <app-footer></app-footer>
 </div>

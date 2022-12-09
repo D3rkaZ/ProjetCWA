@@ -13,7 +13,7 @@ import { AjouteProduitComponent } from './front-end/ajoute-produit/ajoute-produi
 const routes: Routes = [
   {
     path:'home',
-    component: HomeComponent
+    component: HomeComponent    
   },
   {
     path:'shop',
@@ -36,7 +36,7 @@ const routes: Routes = [
     component: PaymentComponent
   },
   {
-    path:"produit",
+    path:"produit/:id",
     component: ProduitComponent
   },
   {

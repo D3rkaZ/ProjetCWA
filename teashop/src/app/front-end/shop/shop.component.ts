@@ -28,7 +28,7 @@ export class ShopComponent implements OnInit {
   produitFilter:any = new Map<string,string>();
   nb_produits:number =0 ;
   nameUser:string="";
-
+  
   constructor(private pS:ProduitsService, private route: ActivatedRoute) {
     this.route.queryParams.subscribe((params:any) => {
       console.log(params);
@@ -79,6 +79,7 @@ export class ShopComponent implements OnInit {
           data.id = e.payload.doc.id;
           return data;
         })
+        this.nb_produits = this.produitList.length;
       });
     this.changeDisplay();
   }
@@ -102,9 +103,11 @@ export class ShopComponent implements OnInit {
           data.id = e.payload.doc.id;
           return data;
         })
+        this.nb_produits = this.produitList.length;
       })
     console.log(this.produitList);
   }
+
   onChange(event:any)
   {
     if(event.target.value !== "Pertinence")
@@ -116,9 +119,21 @@ export class ShopComponent implements OnInit {
           data.id = e.payload.doc.id;
           return data;
         })
-        
+        this.nb_produits = this.produitList.length;
       })
   }
+
+  minus_qty(produit:any)
+  {
+    if(produit.qte > 0)
+    produit.qte--;
+  }
+
+  plus_qty(produit:any)
+  {
+    produit.qte++;
+  }
+
   ngOnInit(): void {
   }
 

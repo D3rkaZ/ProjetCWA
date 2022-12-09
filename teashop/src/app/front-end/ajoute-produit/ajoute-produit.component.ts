@@ -20,6 +20,7 @@ export class AjouteProduitComponent implements OnInit {
   description : string= '';
   suggestion : string= '';
 
+
   produitObjet= {
     id : '',
     nom : '' ,
@@ -30,7 +31,8 @@ export class AjouteProduitComponent implements OnInit {
     pays : '',
     prix :  0 ,
     description : '',
-    suggestion : ''
+    suggestion : '',
+    qte : 0
   }
   
   constructor(private pS:ProduitsService) { }
@@ -51,6 +53,7 @@ export class AjouteProduitComponent implements OnInit {
     this.produitObjet.suggestion =this.suggestion;
     this.produitObjet.url =this.url;
     this.produitObjet.prix =this.prix;
+    this.produitObjet.qte =0;
     
     this.pS.addProduits(this.produitObjet);
   

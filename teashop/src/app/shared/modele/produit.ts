@@ -11,6 +11,7 @@ export interface Produit{
     prix : number;
     description : string;
     suggestion : string;
+    qte : number;
 }
 
 // export class Produit implements Produit_Interface{

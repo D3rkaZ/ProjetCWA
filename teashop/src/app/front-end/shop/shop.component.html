@@ -43,7 +43,6 @@
                         <label>{{parfum}}</label>
                     </li>    
                 </ul>
-    
             </div>
     
             <div class="country_tea">
@@ -66,21 +65,24 @@
     <div class="Row3_shop" >
         <div class="Row3_shop_produit">
             <div class="Row3_shop_produit_item"  *ngFor="let produit of produitList">
-                <img class="produit_img" [src]="produit.url">
-                <p class="produit_name">{{produit.nom}}</p>
-                <p class="produit_couleur">{{produit.titre}}</p>
-                <p class="produit_desc">Un Grand Cru aux  gourmand aux notes de chocolat, de vanille, d'amandes et de fruits.</p>
-                <div class="panier_produit">
-                    <div class="produit_prix">
-                        <div style="display: flex;align-items:center;width:30%;justify-content:space-between">
-                            <i class='bx bx-minus' ></i>
-                            <p style="border:1px solid black;width:30px">0</p>
-                            <i class='bx bx-plus' ></i>
+                <a [routerLink]="['/produit',produit.id]" style="text-decoration:none;color:unset">
+
+                    <img class="produit_img" [src]="produit.url">
+                    <p class="produit_name">{{produit.nom}}</p>
+                    <p class="produit_couleur">{{produit.titre}}</p>
+                    <p class="produit_desc">Un Grand Cru aux  gourmand aux notes de chocolat, de vanille, d'amandes et de fruits.</p>
+                    <div class="panier_produit">
+                        <div class="produit_prix">
+                            <div style="display: flex;align-items:center;width:30%;justify-content:space-between">
+                                <i class='bx bx-minus' (click)="minus_qty(produit)"></i>
+                                <p style="border:1px solid black;width:30px">{{produit.qte}}</p>
+                                <i class='bx bx-plus' (click)="plus_qty(produit)"></i>
+                            </div>
+                            <p>{{produit.prix}}0 €</p>
                         </div>
-                        <p>{{produit.prix}}0 €</p>
+                        <button class="ajoute_panier">AJOUTER AU PANIER</button>
                     </div>
-                    <button class="ajoute_panier">AJOUTER AU PANIER</button>
-                </div>
+                </a>
             </div>
         </div>
     </div>

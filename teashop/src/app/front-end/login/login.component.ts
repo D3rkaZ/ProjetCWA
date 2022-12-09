@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
+
 import { Utilisateur } from '../../shared/modele/utilisateur';
+import { UtilisateurService } from '../../shared/service/utilisateur.service';
+import { Router } from '@angular/router';
+import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
+import { updatePassword } from 'firebase/auth';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers :[AuthLoginService , UtilisateurService]
 })
 export class LoginComponent implements OnInit {
 
@@ -22,6 +27,7 @@ export class LoginComponent implements OnInit {
   email:string ="";
   mdp:string ="";
 
+  session_connecte:any;
   utilisateur:Utilisateur = {
     id:'',
     nom:'',
@@ -32,7 +38,26 @@ export class LoginComponent implements OnInit {
     role:'client',
   }
 
-  constructor(private auth:AuthLoginService) { }
+  user:Utilisateur[]=[];
+  newPassword:string="";
+  constructor(private auth:AuthLoginService , private uS:UtilisateurService,private router:Router) { 
+    this.session_connecte = localStorage.getItem("token");
+
+    if(localStorage.getItem("token")=="true")
+    {
+      let email:any = localStorage.getItem("email");
+      this.uS.getUtilisateur(email).subscribe(res =>
+        {
+          this.user = res.map((e:any)=>
+          {
+            const data = e.payload.doc.data();
+            data.id = e.payload.doc.id;
+            return data;
+          })
+          this.utilisateur=this.user[0];
+        })
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -62,6 +87,18 @@ export class LoginComponent implements OnInit {
       alert('Fill all in put fields');
       return;
     }
+    this.utilisateur.nom = this.nom;
+    this.utilisateur.prenom = this.prenom;
+    this.utilisateur.date_naissance = this.date_naissance;
+    this.utilisateur.email = this.email;
+    this.utilisateur.mdp = this.mdp;
+    this.auth.createUser(this.utilisateur);
+    this.uS.addUser(this.utilisateur);
+  }
+
+  logout()
+  {
+    this.auth.logout();
   }
 
   changeOptionConnection()
@@ -85,5 +122,11 @@ export class LoginComponent implements OnInit {
     }
     this.form_connection="form_connection_switch";
     this.block_connection = "block_connection";
+  }
+
+  updatePassword()
+  {
+    this.auth.updateMdp(this.newPassword);
+    //console.log(this.newPassword);
   }
 }

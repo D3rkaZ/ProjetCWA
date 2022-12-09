@@ -139,6 +139,42 @@ div.Row2_login_form_creation
     height: 55em;
 }
 
+label.coordonnes
+{
+    display: block;
+    color: rgb(255, 255, 255);
+}
+
+div.user_connecte
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    height: 35em;
+    position: relative;
+    left: 50%;
+    transform:translateX(-50%);
+}
+
+div.user_coordonnes input
+{
+    height: 2em;
+    width: 95%;
+    padding-left: 1em;
+    color: #546a2a;
+}
+
+button.logout
+{
+    height: 3em;
+    background-color: #b1b2af;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+    color: #546a2a;
+    
+}
 /* Mobile: width < 740 */
 @media only screen and (max-width:739px)
 {

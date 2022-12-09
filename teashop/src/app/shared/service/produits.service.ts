@@ -57,4 +57,10 @@ export class ProduitsService {
       produit.id = this.database.createId();
       return this.database.collection('/Produits').add(produit);
     }
+
+    //get produit by id
+    getProduitById(id:string)
+    {
+      return this.database.collection('/Produits', ref => ref.where('id', "==",id)).snapshotChanges();
+    }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Utilisateur } from '../modele/utilisateur';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Utilisateur } from '../modele/utilisateur';
 })
 export class UtilisateurService {
 
-  constructor(private database:AngularFirestore) { }
+  constructor(private database:AngularFirestore, private router:Router) { }
 
   //get all users
   getAllUtilisateurs()
@@ -31,11 +32,25 @@ export class UtilisateurService {
             const data = e.payload.doc.data();
             data.id = e.payload.doc.id;
             return data;
-          })
+          });
+          console.log(users);
           if(users.length ==0)
-          this.database.collection('/Utilisateurs').add(user);
+          {
+            this.database.collection('/Utilisateurs').add(user);
+            return;
+          }
           else
-            alert("Votre email a été exist !");
+          { 
+            return;
+          }
+            
+
         })
+    }
+
+    //update password
+    updatePassord()
+    {
+     
     }
 }

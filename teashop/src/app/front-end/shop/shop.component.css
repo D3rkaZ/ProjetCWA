@@ -223,6 +223,9 @@ div.admin{
     display: flex;
     justify-content: space-between;
 }
+div.hidden
+{
+}
 
 /* Mobile: width < 740 */
 @media only screen and (max-width:739px)

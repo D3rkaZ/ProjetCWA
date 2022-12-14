@@ -28,6 +28,7 @@ export class DeliveryComponent implements OnInit {
   ville : string = "";
   pays :string ="";
   telephone :string = "";
+  prixTotal:number =0;
   public commande:Commande ={
     idCommande :"",
     emailUtilisateur:"",
@@ -55,6 +56,7 @@ export class DeliveryComponent implements OnInit {
       this.prenom = this.utilisateur.prenom;
     }
     )
+    this.calculTotal()
    }
 
    validerCommande()
@@ -78,6 +80,14 @@ export class DeliveryComponent implements OnInit {
     alert("Enregistrement votre commande !");
     this.authPay.activeAuth();
     this.router.navigate(['/pay']);
+   }
+   calculTotal()
+   {
+     this.prixTotal = 0; 
+     for (let panierItem of this.panier)
+     {
+       this.prixTotal += panierItem.qteProduit * panierItem.prixProduit
+     }
    }
 
   ngOnInit(): void {

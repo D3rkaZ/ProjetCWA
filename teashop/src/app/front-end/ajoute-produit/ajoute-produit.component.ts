@@ -32,7 +32,8 @@ export class AjouteProduitComponent implements OnInit {
     prix :  0 ,
     description : '',
     suggestion : '',
-    qte : 0
+    qte : 0,
+    qteStock : 50
   }
   
   constructor(private pS:ProduitsService) { }

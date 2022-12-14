@@ -24,6 +24,7 @@
                                     <th>Prix</th>
                                     <th>Qté</th>
                                     <th>Sous-prix</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,6 +43,7 @@
                                     <td class="subPrice_produit">
                                         <p>{{panierItem.qteProduit * panierItem.prixProduit}} €</p>
                                     </td>
+                                    <td><i class='bx bx-trash' (click)="deletePanierItem(index)"></i></td>
                                 </tr>
                             </tbody>
                         </table>

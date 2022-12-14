@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { PanierService } from '../../shared/service/panier.service';
 import { Utilisateur } from '../../shared/modele/utilisateur';
 import { AuthDelyService } from '../../shared/authGuards/auth-dely.service';
+import { ProduitsService } from '../../shared/service/produits.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,19 +19,23 @@ export class CartComponent implements OnInit {
   type:string = "Thé Vert";
   prixTotal:number = 0 ;
   utilisateur: Utilisateur ={id:"",nom:"" ,prenom :"" , email:"" ,mdp:"", date_naissance: "", role :"" , panier : []};  
-  constructor(private uS:UtilisateurService , private router: Router , private panierSer:PanierService , private authDely:AuthDelyService) {
+  constructor(private uS:UtilisateurService , private router: Router , private panierSer:PanierService , private authDely:AuthDelyService,private pS:ProduitsService) {
     let email: any = localStorage.getItem("email");
-    this.uS.getUtilisateurByEmail(email).then((doc)=>
+    let isConnected:any = localStorage.getItem("token");
+    if(isConnected=="true")
     {
-      if(doc.exists)
+      this.uS.getUtilisateurByEmail(email).then((doc)=>
       {
-        const user:any = doc.data();
-        this.panier = user.panier;
-        this.utilisateur= user
-      }
-      this.calculTotal();
-      
-    })
+        if(doc.exists)
+        {
+          const user:any = doc.data();
+          this.panier = user.panier;
+          this.utilisateur= user
+        }
+        this.calculTotal();
+        
+      })
+    }
   }
   
   changeQte(produit:any,event:any)
@@ -67,6 +72,20 @@ export class CartComponent implements OnInit {
     else
       alert("Votre panier est vide !")
   
+  }
+  deletePanierItem(event:any)
+  {
+    let stock:number = this.panier[event].qteStock + this.panier[event].qteProduit;
+    console.log(stock)
+    this.pS.updateQteStock(this.panier[event],stock)
+    this.panier.splice(event,1);
+    let email:any = localStorage.getItem("email");      
+    this.uS.getDoc(email).update(
+      {
+        panier: this.panier
+      }
+    )
+      this.calculTotal();
   }
   
   ngOnInit(): void {

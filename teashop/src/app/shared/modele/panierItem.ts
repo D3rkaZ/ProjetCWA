@@ -5,4 +5,5 @@ export interface panierItem
     urlProduit : string ;
     prixProduit : number ;
     qteProduit : number ;
+    qteStock : number
 }

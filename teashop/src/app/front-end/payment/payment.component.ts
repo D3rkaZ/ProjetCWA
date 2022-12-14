@@ -38,6 +38,7 @@ export class PaymentComponent implements OnInit {
   adresse_livraison :string = ""
   nomUtilisateur : string = "";
   email:any = localStorage.getItem('email');
+  prixTotal : number =0;
   changePaymentMethod_Visa()
   {
     if((this.method_visa=="block_none"&&this.method_paypal!="block_none")||(this.method_visa=="block_none"&&this.method_ecart!="block_none") )
@@ -130,6 +131,15 @@ export class PaymentComponent implements OnInit {
   
     this.router.navigate(['/OK'])
     //this.cS.updateMethodPayment(this.commande,this.methode_paiement);
+   }
+
+   calculTotal()
+   {
+     this.prixTotal = 0; 
+     for (let panierItem of this.commande.panier)
+     {
+       this.prixTotal += panierItem.qteProduit * panierItem.prixProduit
+     }
    }
 
   ngOnInit(): void {

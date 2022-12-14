@@ -12,6 +12,7 @@ export interface Produit{
     description : string;
     suggestion : string;
     qte : number;
+    qteStock :number ;
 }
 
 // export class Produit implements Produit_Interface{

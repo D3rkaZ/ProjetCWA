@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/compat/firestore'
 import { Produit } from '../modele/produit';
+import { panierItem } from '../modele/panierItem';
 
 
 @Injectable({
@@ -53,7 +54,21 @@ export class ProduitsService {
     addProduits(produit : Produit)
     {
       produit.id = this.database.createId();
-      return this.database.collection('/Produits').add(produit);
+      return this.database.collection('/Produits').doc(produit.id).set(
+        {
+          id : produit.id,
+          nom : produit.nom,
+          titre : produit.titre,
+          description : produit.description,
+          url : produit.url,
+          parfum : produit.parfum ,
+          qte : produit.qte,
+          prix : produit.prix,
+          suggestion : "",
+          type: produit.type,
+          pays : produit.pays
+        }
+      );
     }
 
     //get produit by id
@@ -81,6 +96,16 @@ export class ProduitsService {
       )
     }
 
+    //update qteStock
+
+    updateQteStock(produit:panierItem, qteStock:number)
+    {
+      return this.database.collection('/Produits').doc(produit.idProduit).update(
+        {
+          qteStock : qteStock
+        }
+      )
+    }
     //delete produit
     deleteProduit(produit:Produit)
     {

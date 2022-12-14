@@ -29,7 +29,8 @@ export class ProduitComponent implements OnInit {
     prix :  0 ,
     description : '',
     suggestion : '',
-    qte : 0
+    qte : 0,
+    qteStock :0,
   }
 
   produits:Produit[]=[];
@@ -85,34 +86,71 @@ export class ProduitComponent implements OnInit {
     let token:any = localStorage.getItem("token");
     if (token== "true")
     {
+      //this.totalPrix =0;
       let panierItem: panierItem =
       {
         idProduit : this.produitObjet.id ,
         nomProduit : this.produitObjet.nom ,
         urlProduit : this.produitObjet.url ,
         prixProduit : this.produitObjet.prix ,
-        qteProduit : this.produitObjet.qte 
+        qteProduit : this.produitObjet.qte ,
+        qteStock : this.produitObjet.qteStock
       }
       let email:any = localStorage.getItem("email");
-      let cdt:boolean = false ;
-      for (let produit of this.panier)
+      this.uS.getUtilisateurByEmail(email).then((doc) =>
         {
-          if(produit.idProduit == panierItem.idProduit)
+          if (doc.exists) {
+            const data:any = doc.data();
+            let cdt:boolean = false ;
+            this.panier = data.panier;
+            let stock:any = this.produitObjet.qteStock;
+            if(panierItem.qteProduit <= this.produitObjet.qteStock)
             {
-              produit.qteProduit += panierItem.qteProduit;
-              cdt =true;
+             console.log (panierItem.qteProduit);
+             console.log (this.produitObjet.qteStock);
+
+            for (let produit of this.panier)
+            {
+              if(produit.idProduit == panierItem.idProduit)
+              {
+                  produit.qteProduit += panierItem.qteProduit;
+                  this.produitObjet.qteStock -=panierItem.qteProduit;
+                  this.pS.updateQteStock(panierItem,this.produitObjet.qteStock);
+                  panierItem.qteStock = this.produitObjet.qteStock
+                  cdt =true;
+              }
             }
+            if(cdt == false)
+            {
+              this.panier.push(panierItem);
+              this.produitObjet.qteStock -=panierItem.qteProduit
+              this.pS.updateQteStock(panierItem,this.produitObjet.qteStock)
+              panierItem.qteStock = this.produitObjet.qteStock
+            }
+              
+            this.uS.getDoc(email).update(
+              {
+                panier: this.panier
+              }
+            )
+            alert("Ajoute " + this.produitObjet.nom + " dans votre panier !");
+            this.panierSer.envoiePanier(this.panier);
+          }
+          else
+          {
+
+            alert("Il nous reste " + stock + " produits !")
+          }
         }
-          if(cdt == false)
-            this.panier.push(panierItem);
-          this.uS.getDoc(email).update(
-            {
-              panier: this.panier
-            }
-          )
-          this.panierSer.envoiePanier(this.panier);
+        }
+        
+      )
       this.produitObjet.qte = 1 ;
-      alert("Ajoute " + this.produitObjet.nom + " dans votre panier !");
+      // for(let panierItem of this.panier)
+      // {
+      //   this.totalPrix += panierItem.qteProduit * panierItem.prixProduit
+      // }
+
     }
     else
       this.router.navigate(['/login'])

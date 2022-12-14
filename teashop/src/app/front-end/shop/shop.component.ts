@@ -2,8 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProduitsService } from '../../shared/service/produits.service';
 import { CommandeService } from '../../shared/service/commande.service';
 import { Produit } from '../../shared/modele/produit';
-import { __values } from 'tslib';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PanierService } from 'src/app/shared/service/panier.service';
+import { panierItem } from '../../shared/modele/panierItem';
+import { UtilisateurService } from '../../shared/service/utilisateur.service';
+import { Utilisateur } from 'src/app/shared/modele/utilisateur';
+import { panier } from '../../shared/modele/panier';
+import { AuthAdminService } from '../../shared/authGuards/auth-admin.service';
+
 
 
 @Component({
@@ -28,18 +34,45 @@ export class ShopComponent implements OnInit {
   produitFilter:any = new Map<string,string>();
   nb_produits:number =0 ;
   nameUser:string="";
-  
-  constructor(private pS:ProduitsService, private route: ActivatedRoute) {
-    this.route.queryParams.subscribe((params:any) => {
-      console.log(params);
 
-      this.nameUser = params.name;
-      console.log(this.nameUser); 
-    })
-    this.getAllProuit();
 
-    
+  //Test panier 
+  panier : panierItem[]=[];
+  totalPrix : number =0;
+  isConnected:any="";
+  test:any[]=[];
+
+  utilisateur:Utilisateur = {
+    id:'',
+    nom:'',
+    prenom:'',
+    email:'',
+    mdp:'',
+    date_naissance:'',
+    role:'',
+    panier: [],
   }
+  u:Utilisateur[] = [];
+
+
+  constructor(private pS:ProduitsService, private route: ActivatedRoute, private router:Router,private paniS:PanierService,private uS:UtilisateurService,private authAdmin:AuthAdminService) {
+    // this.route.queryParams.subscribe((params:any) => {
+    //   this.nameUser = params.name;
+    // })
+    this.getAllProuit();
+    this.isConnected=localStorage.getItem("token");
+    let email: any = localStorage.getItem("email");
+    this.uS.getUtilisateurByEmail(email).then((doc)=>
+    {
+      if(doc.exists)
+      {
+        const user:any = doc.data();
+        this.panier = user.panier;
+        this.paniS.envoiePanier(this.panier);
+      }
+    })
+  }
+
   changeDisplay()
   {
     this.class_row_filter = this.class_row_filter == "Row_filter" ? "Row_filter_display-none" : "Row_filter";
@@ -92,7 +125,7 @@ export class ShopComponent implements OnInit {
     this.getAllProuit();
     this.changeDisplay();
   }
-
+//
   getAllProuit()
   {
     this.pS.getAllProduits().subscribe(res =>
@@ -105,7 +138,6 @@ export class ShopComponent implements OnInit {
         })
         this.nb_produits = this.produitList.length;
       })
-    console.log(this.produitList);
   }
 
   onChange(event:any)
@@ -125,7 +157,7 @@ export class ShopComponent implements OnInit {
 
   minus_qty(produit:any)
   {
-    if(produit.qte > 0)
+    if(produit.qte > 1)
     produit.qte--;
   }
 
@@ -134,7 +166,96 @@ export class ShopComponent implements OnInit {
     produit.qte++;
   }
 
+  addPanier(event:any)
+  {
+    let token:any = localStorage.getItem("token");
+    if (token== "true")
+    {
+      this.totalPrix =0;
+      let panierItem: panierItem =
+      {
+        idProduit : event.id ,
+        nomProduit : event.nom ,
+        urlProduit : event.url ,
+        prixProduit : event.prix ,
+        qteProduit : event.qte 
+      }
+      let email:any = localStorage.getItem("email");
+      this.uS.getUtilisateurByEmail(email).then((doc) =>
+        {
+          if (doc.exists) {
+            const data:any = doc.data();
+            let cdt:boolean = false ;
+            this.panier = data.panier;
+            for (let produit of this.panier)
+            {
+              if(produit.idProduit == panierItem.idProduit)
+              {
+                produit.qteProduit += panierItem.qteProduit;
+                cdt =true;
+              }
+            }
+            if(cdt == false)
+              this.panier.push(panierItem);
+            this.uS.getDoc(email).update(
+              {
+                panier: this.panier
+              }
+            )
+            this.paniS.envoiePanier(this.panier);
+        }
+        }
+      )
+      event.qte = 1 ;
+      for(let panierItem of this.panier)
+      {
+        this.totalPrix += panierItem.qteProduit * panierItem.prixProduit
+      }
+      alert("Ajoute " + event.nom + " dans votre panier !");
+    }
+    else
+      this.router.navigate(['/login'])
+    
+  }
+
+  getAllPaniers()
+  {
+    this.paniS.getAllProduits().subscribe(res =>
+      {
+        this.test= res.map((e:any)=>
+        {
+          const data = e.payload.doc.data();
+          data.id = e.payload.doc.id;
+          return data;
+        })
+        console.log(this.test);
+      })
+  }
+
+  admin_add()
+  {
+    this.authAdmin.activeAuth();
+    this.router.navigate(['/ajouteProduit']);
+  }
+
+  admin_minus()
+  {
+    this.authAdmin.activeAuth();
+    this.router.navigate(['/retireProduit']);
+  }
+
   ngOnInit(): void {
+    let email:any = localStorage.getItem("email");
+    this.uS.getUtilisateurByEmail(email).then((doc) =>
+      {
+        if (doc.exists) {
+          const data:any = doc.data();
+          let cdt:boolean = false ;
+          this.panier = data.panier;
+          this.utilisateur = data;
+          this.uS.envoieUtilisateurObj(this.utilisateur);
+        }
+      })
   }
 
   

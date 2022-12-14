@@ -1,3 +1,4 @@
+import { panierItem } from './panierItem';
 export interface Utilisateur
 {
     id : string,
@@ -5,6 +6,7 @@ export interface Utilisateur
     prenom : string,
     email : string ,
     mdp : string ,
-    date_naissance :string ,
-    role :string
+    date_naissance :string,
+    role :string,
+    panier : panierItem[]
 }

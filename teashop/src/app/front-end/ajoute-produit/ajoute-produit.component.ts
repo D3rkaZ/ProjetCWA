@@ -54,7 +54,6 @@ export class AjouteProduitComponent implements OnInit {
     this.produitObjet.url =this.url;
     this.produitObjet.prix =this.prix;
     this.produitObjet.qte =0;
-    
     this.pS.addProduits(this.produitObjet);
   
   }

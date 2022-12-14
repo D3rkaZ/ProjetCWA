@@ -1,0 +1,37 @@
+div.Row2_retireProduit
+{
+    /* background:url(https://images.unsplash.com/photo-1455157823797-3019317cbcf0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+table{
+    width: 70%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 2% auto;
+    border: 3px solid #546a2a;
+    padding-right: 3%;
+}
+thead
+{
+    background-color: #f1f4f0;
+    height: 3em;
+}
+td.name_produit
+{
+    padding-left: 2%;
+    display: flex;
+    word-break: break-all;
+}
+td.name_produit div{
+    margin-left: 20px;
+}
+td.price_produit,td.qty_produit,td.subPrice_produit{
+    text-align: center;
+}
+img.panierItem_url
+{
+    object-fit: cover;
+    width: 20%;
+}

@@ -1,0 +1,35 @@
+<div class="Grid_retireproduit">
+    <app-menu></app-menu>
+    <div class="Row2_retireProduit">
+        <table>
+            <!--<caption>Les produits dans le panier</caption>-->
+            <thead>
+                <tr>
+                    <th>Produits</th>
+                    <th style="width:20%">Prix</th>
+                    <th style="width:20%">Qté</th>
+                    <th  style="width:5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let produit of produitList, let index = index">
+                    <td class="name_produit">
+                       <img [src]= "produit.url" class="panierItem_url"> 
+                       <div>
+                            <h4>Produit {{index + 1}}</h4>
+                            <p style="text-transform: uppercase">{{produit.nom}}</p>
+                       </div>
+                    </td>
+                    <td class="qty_produit">
+                        <p style="text-align:center">{{produit.prix}}0 €</p>
+                    </td>
+                    <td>
+                        <p style="text-align:center">50</p>
+                    </td>
+                    <td><p style="color:red ;"><i class='bx bx-trash' (click)="deleteProduit(produit)"></i></p></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-footer></app-footer>
+</div>

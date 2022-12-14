@@ -1,6 +1,7 @@
 <div class="Grid_produit">
     <app-menu></app-menu>
     <div class="Row2_produit">
+        
         <div class="Row2_produit_inner">
             <div class="info_produit">
                 <div class="img_produit">
@@ -20,13 +21,13 @@
                     <div class="price_produit">
                         <h3>{{produitObjet.prix}}0 €</h3>
                         <div class="control_produit">
-                            <i class='bx bx-minus'></i>
-                            <p class="qty_produit">0</p>
-                            <i class='bx bx-plus'></i>
+                            <i class='bx bx-minus' (click)="minus_qty()"></i>
+                            <p class="qty_produit">{{produitObjet.qte}}</p>
+                            <i class='bx bx-plus' (click)="plus_qty()"></i>
                         </div>
                         <p>en stock <i class='bx bx-check'></i></p>
                     </div>
-                    <button class="add_produit">Ajouter dans le panier</button>
+                    <button class="add_produit" (click)="addPanier()">Ajouter dans le panier</button>
                 </div>
             </div>
             <div class="additional_attribute">
@@ -62,10 +63,10 @@
                         
                         <span style="font-weight:bolder">Préparer ce thé glacé :</span><br>
                         
-                        Prendre 16 g de feuilles de thé par litre d’eau à température ambiante, laisser infuser pendant 45 minutes, retirer les feuilles et placer au frais.</p>
+                        Prendre 16 g de feuilleeves de thé par litre d’eau à température ambiante, laisser infuser pendant 45 minutes, retirer les feuilles et placer au frais.</p>
                 </div>
             </div>
-            <app-recommend-produit></app-recommend-produit>
+            <app-recommend-produit [typeproduit]="typeProduit"></app-recommend-produit>
         </div>
     </div>
     <app-footer></app-footer>

@@ -208,6 +208,22 @@ button.ajoute_panier
     border: none;
 }
 
+button.btn_admin
+{
+    height: 3em;
+    background-color: #e5933b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+div.admin{
+    padding-top: 2%;
+    width:20%;
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Mobile: width < 740 */
 @media only screen and (max-width:739px)
 {

@@ -1,0 +1,100 @@
+div.teashop_brande_menu
+{
+    display:grid;
+    grid-template-columns:3fr 6fr 3fr;
+    grid-column-gap: 20px;
+    font-family:'Comic Sans MS', cursive;
+    border-bottom:10px solid #546a2a ;
+}
+div.block_logo
+{
+    padding-left: 20%;
+    display: flex;
+    align-items: center;
+}
+/* Information de l'utilisateur (Mon compte + Mon panier)*/
+div.block_user
+{
+    width: 65%;
+    display: flex;
+    justify-content: space-between ;
+}
+i.bxs-user,i.bxs-shopping-bag
+{
+    transform: translateY(2px);
+}
+
+/* Logo et Nom du magasin */
+p.shop_name
+{
+    font-weight: bolder;
+    transform: translateY(-2px);
+    font-size: 20px;
+}
+p.shop_logo{
+    color: rgb(128, 177, 55);
+    font-size: 20px;
+}
+
+li.menu_item a{
+    text-decoration: unset;
+    color: white;
+} 
+
+div.block_search
+{
+    display: flex;
+    align-items: center;
+}
+
+div.block_search_inner
+{
+    padding:0 20px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between ;
+    height: 50%;
+    width: 50%;
+    border: 1px solid grey;
+    border-radius: 20px;
+    width: 70%;
+    margin:0 12.5% ;
+}
+
+input.event_search
+{
+    border: none;
+    border-right: 1px solid black;
+    width: 60%;
+    height: 70%;
+
+}
+
+div.Row2_valide
+{
+    height: auto;
+    padding: 5% 25%;
+}
+div.slogan div{
+    display: flex;
+}
+img.img_ok{
+    object-fit: cover;
+    width: 12%;
+    padding-right: 5%;
+}
+
+ul.list_items_resume
+{
+    padding: unset;
+    list-style-type: none;
+    height: 20em;
+    overflow-y: scroll;
+}
+
+ul.list_items_resume div
+{
+    display :grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}

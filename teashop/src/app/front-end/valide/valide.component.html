@@ -1,0 +1,54 @@
+<div class="Grid_valide">
+    <div class="Row1_valide">
+        <div class="teashop_brande_menu">
+            <div class="block_logo">
+                <p class="shop_logo"><i class='bx bxs-leaf'></i></p>
+                <p class="shop_name">TeaShop</p>    
+            </div>
+            <div class="block_search">
+                <div class="block_search_inner">
+                    <label><i class='bx bx-search-alt-2'></i></label>
+                    <input type="text" class="event_search" placeholder="Search"/>
+                    <label><i class='bx bx-store'></i></label>
+                </div>
+            </div>
+            <div class="block_user">
+                <div class="user">
+                    <p><i class='bx bxs-user'></i> Mon compte</p>
+                </div>
+                <div  class="cart">
+                    <p><i class='bx bxs-shopping-bag' ></i>Mon panier</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Row2_valide">
+        <div class="slogan">
+            <div>
+                <img src="https://cdn.icon-icons.com/icons2/1506/PNG/512/emblemok_103757.png" class="img_ok">
+                <p style="font-size:30px; font-weight:bolder">Merci pour votre paiement !</p>
+            </div>
+            
+            <p>Bonjour <span style="font-weight:bolder">{{commande.addr_livraison.nom}}, </span></p>
+            <ul class="list_items_resume">
+                <li class="item_resume" *ngFor="let panierItem of commande.panier" style="border-bottom: 1px solid #546a2a">
+                    <div style="color :#546a2a; font-weight : bolder">
+                        <img [src]="panierItem.urlProduit" style="object-fit:cover; width:60%">
+                        <p >{{panierItem.nomProduit}}</p>
+                        <p>x{{panierItem.qteProduit}}</p>
+                    </div>
+                </li>
+            </ul>
+            <p style="color:rgb(125, 125, 125)">Si un des articles du renvoi est manquant ou endomagé, nou vous réservons le droit de vous réclamer le montant du remboursement.</p>
+            <p style="color:rgb(125, 125, 125)">Nous aimerions en savoir plus sur votre expérience en matière de paiement. Comment s'est déroulée cette expérience de paiement ? <br>Merci de nous faire part de vos commentaires pour nous aider à nous améliorer.</p>
+            <p>Cordialement,</p>
+            <p >Votre équipe Teashop .</p>
+        </div>
+
+
+     </div>
+
+
+
+    <app-footer></app-footer>
+</div>

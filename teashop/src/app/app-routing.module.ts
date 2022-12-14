@@ -1,5 +1,5 @@
 import { NgModule, Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { ShopComponent } from './front-end/shop/shop.component';
 import { HomeComponent } from './front-end/home/home.component';
 import { LoginComponent } from './front-end/login/login.component';
@@ -9,6 +9,12 @@ import { PaymentComponent } from './front-end/payment/payment.component';
 import { ProduitComponent } from './front-end/shop/produit/produit.component';
 import { RecommendProduitComponent } from './front-end/recommend-produit/recommend-produit.component';
 import { AjouteProduitComponent } from './front-end/ajoute-produit/ajoute-produit.component';
+import { ValideComponent } from './front-end/valide/valide.component';
+import { AuthGuard } from './shared/authGuards/auth.guard';
+import { AuthPaymentGuard } from './shared/authGuards/auth-payment.guard';
+import { AuthValideGuard } from './shared/authGuards/auth-valide.guard';
+import { RetireProduitComponent } from './front-end/retire-produit/retire-produit.component';
+import { AuthAdminGuard } from './shared/authGuards/auth-admin.guard';
 
 const routes: Routes = [
   {
@@ -29,27 +35,38 @@ const routes: Routes = [
   },
   {
     path:"dely",
-    component: DeliveryComponent
+    component: DeliveryComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"pay",
-    component: PaymentComponent
+    component: PaymentComponent,
+    canActivate : [AuthPaymentGuard]
   },
   {
-    path:"produit/:id",
+    path:"produit/:id/:type",
     component: ProduitComponent
   },
   {
     path:'ajouteProduit',
-    component: AjouteProduitComponent
+    component: AjouteProduitComponent,
+    canActivate : [AuthAdminGuard]
   },
   {
     path:'',
     redirectTo:'home',
     pathMatch:'full'
   },
-
-
+  {
+    path:'OK',
+    component: ValideComponent,
+    canActivate : [AuthValideGuard]
+  },
+  {
+    path:'retireProduit',
+    component : RetireProduitComponent,
+    canActivate : [AuthAdminGuard]
+  }
 ];
 
 @NgModule({

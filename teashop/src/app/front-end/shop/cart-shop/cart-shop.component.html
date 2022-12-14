@@ -4,11 +4,11 @@
     </div>
     <div [class]="height_shop">
         <ul class="list_item_cart"> 
-            <li>tea1</li>
-            <li>tea2</li>
-            <li>tea3</li>
-            <li>tea4</li>
+            <li *ngFor="let panierItem of panier">
+                    <p>{{panierItem.nomProduit}}</p>
+                    <p>x {{panierItem.qteProduit}}</p>
+                    <p>{{panierItem.qteProduit * panierItem.prixProduit}} €</p>
+            </li>
         </ul>
-        <p>Total: </p>
     </div>
 </div>

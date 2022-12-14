@@ -17,27 +17,27 @@
                     <form class="delevery">
                         <div class="user_info">
                             <label>Prénom : </label>
-                            <input type="text">
+                            <input type="text"name ="nom" [(ngModel)]="nom">
                         </div>
                         <div class="user_info">
                             <label>Nom : </label>
-                            <input type="text">
+                            <input type="text" name ="prenom" [(ngModel)]="prenom">
                         </div>
                         <div class="user_info">
                             <label>Pays : </label>
-                            <input type="text">
+                            <input type="text" name ="pays" [(ngModel)]="pays">
                         </div>
                         <div class="user_info">
                             <label>Code postal : </label>
-                            <input type="text">
+                            <input type="text" name ="code_postal" [(ngModel)]="code_postal">
                         </div>
                         <div class="user_info">
                             <label>Ville : </label>
-                            <input type="text">
+                            <input type="text" name ="ville" [(ngModel)]="ville">
                         </div>
                         <div class="user_info">
                             <label>Adresse : </label>
-                            <input type="text">
+                            <input type="text" name ="adress" [(ngModel)]="adress">
                         </div>
                         <div class="user_info">
                             <label>Complément d'adresse ou entreprise : </label>
@@ -45,8 +45,9 @@
                         </div>
                         <div class="user_info">
                             <label>Numéro de télephone : </label>
-                            <input type="text">
+                            <input type="text" name ="telephone" [(ngModel)]="telephone">
                         </div>
+                       
                     </form>
                 </div>
 
@@ -57,20 +58,24 @@
                         <p class="color_gris">Dont taxe : 1,36 €</p>
                         <p class="border_text">Total Panier : 102,00 €</p>
                     </div>
+                    
                     <div class="items_template">
-                        <p class="border_text">5 articles dans le panier <i class='bx bx-chevron-down' ></i></p>
+                        <p class="border_text">{{nbProduits}} articles dans le panier <i class='bx bx-chevron-down' ></i></p>
                         <ul class="list_items_resume">
-                            <li class="item_resume">Article 1</li>
-                            <li class="item_resume">Article 2</li>
-                            <li class="item_resume">Article 3</li>
-                            <li class="item_resume">Article 4</li>
-                            <li class="item_resume">Article 5</li>
+                            <li class="item_resume" *ngFor="let panierItem of panier" style="border-bottom: 1px solid #546a2a">
+                                <div style="color :#546a2a; font-weight : bolder">
+                                    <img [src]="panierItem.urlProduit" style="object-fit:cover; width:60%">
+                                    <p >{{panierItem.nomProduit}}</p>
+                                    <p>x{{panierItem.qteProduit}}</p>
+                                </div>
+                            </li>
                         </ul>
                     </div>
+                    
 
                 </div>
             </div>
-            <button class="btn_valdie_info"> Valider des informations de livraison</button>
+            <button class="btn_valdie_info" (click)="validerCommande()"> Valider des informations de livraison</button>
         </div>
         
     </div>

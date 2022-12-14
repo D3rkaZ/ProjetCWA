@@ -1,38 +1,13 @@
 <div class="recommend_items">
     <h2 class="title_recommend"><span>Recommandez-vous</span></h2>
     <ul class="list_recommend_items">
-        <li class="item_recommend">
+        <li class="item_recommend"  *ngFor="let produit of produitList">
             <div class="item_recommend_img">
-                <img class="item_img" src="https://www.palaisdesthes.com/media/catalog/product/cache/79b82fc1c4a508559ff6c83047415a47/w/5/w503.jpg">
-            </div>  
-            <h4>Name</h4>
-            <p style="color:#546a2a">Prix</p>
-            <button class="btn_item">Découvrir</button>
+                <img class="item_img" [src]="produit.url">
+           </div>  
+            <h5>{{produit.nom}}</h5>
+            <p style="color:#546a2a">{{produit.prix}}0 €</p>
+            <button class="btn_item" (click)="goToProduit(produit)">Découvrir</button>
         </li>
-        <li class="item_recommend">
-            <div class="item_recommend_img">
-                <img class="item_img" src="https://www.palaisdesthes.com/media/catalog/product/cache/79b82fc1c4a508559ff6c83047415a47/w/5/w503.jpg">
-            </div>  
-            <h4>Name</h4>
-            <p style="color:#546a2a">Prix</p>
-            <button class="btn_item">Découvrir</button>
-        </li>
-        <li class="item_recommend">
-            <div class="item_recommend_img">
-                <img class="item_img" src="https://www.palaisdesthes.com/media/catalog/product/cache/79b82fc1c4a508559ff6c83047415a47/w/5/w503.jpg">
-            </div>  
-            <h4>Name</h4>
-            <p style="color:#546a2a">Prix</p>
-            <button class="btn_item">Découvrir</button>
-        </li>
-        <li class="item_recommend">
-            <div class="item_recommend_img">
-                <img class="item_img" src="https://www.palaisdesthes.com/media/catalog/product/cache/79b82fc1c4a508559ff6c83047415a47/w/5/w503.jpg">
-            </div>  
-            <h4>Name</h4>
-            <p style="color:#546a2a">Prix</p>
-            <button class="btn_item">Découvrir</button>
-        </li>
-      
     </ul>
 </div>

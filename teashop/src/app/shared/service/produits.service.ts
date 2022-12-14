@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { GestionProduit } from '../modele/GestionProduit';
-import { Produit_Interface } from '../modele/produit_interface';
 import { AngularFirestore} from '@angular/fire/compat/firestore'
 import { Produit } from '../modele/produit';
 
@@ -62,5 +60,30 @@ export class ProduitsService {
     getProduitById(id:string)
     {
       return this.database.collection('/Produits', ref => ref.where('id', "==",id)).snapshotChanges();
+    }
+
+    //get produit by type
+    getProduitByType(type:string)
+    {
+      return this.database.collection('/Produits', ref => ref.where('type', "==",type)).snapshotChanges();
+    }
+
+    //get produit by id
+    getById()
+    {
+      return this.database.collection('/Produits').doc("1").ref.get().then(
+        (doc)=>{
+          if (doc.exists) {
+            console.log("ok");
+            console.log(doc.data());
+          }
+        }
+      )
+    }
+
+    //delete produit
+    deleteProduit(produit:Produit)
+    {
+      this.database.collection("/Produits").doc(produit.id).delete();
     }
 }

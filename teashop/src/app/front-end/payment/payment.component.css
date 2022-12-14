@@ -29,6 +29,17 @@ p.form_title
     height: 10%;
 }
 
+ul.list_items_resume
+{
+    padding: unset;
+}
+
+ul.list_items_resume div
+{
+    display :grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
 /* Progress Bar */
 
 ul.progress_bar
@@ -232,6 +243,18 @@ button.btn_ecart
     padding: 5%;
     color: white;
     border: none;
+}
+button.btn_valide_carte
+{
+    margin-top: 10%;
+    height: 5em;
+    width: 20em;
+    background-color: rgb(162, 162, 239);
+    border:none;
+    color: white;
+    font-weight: bolder;
+    font-size: 15px;
+
 }
 
 /* Change mode du paiement*/

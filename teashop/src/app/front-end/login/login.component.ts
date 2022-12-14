@@ -5,6 +5,7 @@ import { UtilisateurService } from '../../shared/service/utilisateur.service';
 import { Router } from '@angular/router';
 import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
 import { updatePassword } from 'firebase/auth';
+import { panierItem } from '../../shared/modele/panierItem';
 
 @Component({
   selector: 'app-login',
@@ -36,26 +37,40 @@ export class LoginComponent implements OnInit {
     mdp:'',
     date_naissance:'',
     role:'client',
+    panier: [],
   }
 
   user:Utilisateur[]=[];
   newPassword:string="";
+  hihinom:string="";
   constructor(private auth:AuthLoginService , private uS:UtilisateurService,private router:Router) { 
     this.session_connecte = localStorage.getItem("token");
 
     if(localStorage.getItem("token")=="true")
     {
       let email:any = localStorage.getItem("email");
-      this.uS.getUtilisateur(email).subscribe(res =>
+      // this.uS.getUtilisateur(email).subscribe(res =>
+      //   {
+      //     this.user = res.map((e:any)=>
+      //     {
+      //       const data = e.payload.doc.data();
+      //       data.id = e.payload.doc.id;
+      //       return data;
+      //     })
+      //     this.utilisateur=this.user[0];
+      //     console.log(this.utilisateur)
+      //   })
+    
+      this.uS.getUtilisateurByEmail(email).then((doc)=>
+      {
+        if(doc.exists)
         {
-          this.user = res.map((e:any)=>
-          {
-            const data = e.payload.doc.data();
-            data.id = e.payload.doc.id;
-            return data;
-          })
-          this.utilisateur=this.user[0];
-        })
+          const user:any = doc.data();
+          this.utilisateur = user;
+          // this.uS.envoieUtilisateurObj(this.utilisateur);
+        }
+        
+      })
     }
   }
 
@@ -73,9 +88,7 @@ export class LoginComponent implements OnInit {
       alert("Entrez votre mot de passe !");
       return;
     }
-
     this.auth.login(this.email,this.mdp);
-    //console.log(localStorage.getItem("nom"));
     this.email="";
     this.mdp="";
   }
@@ -92,6 +105,7 @@ export class LoginComponent implements OnInit {
     this.utilisateur.date_naissance = this.date_naissance;
     this.utilisateur.email = this.email;
     this.utilisateur.mdp = this.mdp;
+    this.utilisateur.panier =[];
     this.auth.createUser(this.utilisateur);
     this.uS.addUser(this.utilisateur);
   }

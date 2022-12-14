@@ -16,7 +16,9 @@ import { RecommendProduitComponent } from './front-end/recommend-produit/recomme
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AjouteProduitComponent } from './front-end/ajoute-produit/ajoute-produit.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { ValideComponent } from './front-end/valide/valide.component';
+import { RetireProduitComponent } from './front-end/retire-produit/retire-produit.component'
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { FormsModule } from '@angular/forms'
     PaymentComponent,
     ProduitComponent,
     RecommendProduitComponent,
-    AjouteProduitComponent
+    AjouteProduitComponent,
+    ValideComponent,
+    RetireProduitComponent
   ],
   imports: [
     BrowserModule,

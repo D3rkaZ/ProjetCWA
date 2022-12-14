@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { panierItem } from '../../../shared/modele/panierItem';
+import { panier } from '../../../shared/modele/panier';
 
 @Component({
   selector: 'app-cart-shop',
@@ -7,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartShopComponent implements OnInit {
 
-  constructor() { }
+  constructor() {  
+  }
   public width_shop:string ="cart_shop";
   public height_shop:string="cart_shop_item";
-
+  @Input() panier:panierItem[] = [];
   ngOnInit(): void {
+
   }
   changeTaillePanier()
   {

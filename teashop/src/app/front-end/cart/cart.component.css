@@ -78,6 +78,12 @@ li.progress_active
     text-decoration: underline;
 }
 
+img.panierItem_url
+{
+    object-fit: cover;
+    width: 30%;
+}
+
 form.form_cart
 {
     width: 100%;
@@ -145,7 +151,10 @@ button.btn_cart
     border: none;
     border-radius: 5px;
 }
-
+input.qte_produit
+{
+    width: 20%;
+}
 /* Mobile: width < 740 */
 @media only screen and (max-width:739px)
 {

@@ -24,6 +24,10 @@
             </div>
         </div>
     </div>
+    <div class="admin" *ngIf="utilisateur.role == 'admin'">
+        <button class="btn_admin" (click)="admin_add()">Ajoute d'un produit</button>
+        <button class="btn_admin" (click)="admin_minus()">Retire d'un produit</button>
+    </div>
     <div [class]="class_row_filter">
         <div class="inner_filter">
             <div class="color_tea" >
@@ -65,12 +69,13 @@
     <div class="Row3_shop" >
         <div class="Row3_shop_produit">
             <div class="Row3_shop_produit_item"  *ngFor="let produit of produitList">
-                <a [routerLink]="['/produit',produit.id]" style="text-decoration:none;color:unset">
+                <a [routerLink]="['/produit',produit.id,produit.type]" style="text-decoration:none;color:unset">
 
                     <img class="produit_img" [src]="produit.url">
                     <p class="produit_name">{{produit.nom}}</p>
                     <p class="produit_couleur">{{produit.titre}}</p>
                     <p class="produit_desc">Un Grand Cru aux  gourmand aux notes de chocolat, de vanille, d'amandes et de fruits.</p>
+                </a>
                     <div class="panier_produit">
                         <div class="produit_prix">
                             <div style="display: flex;align-items:center;width:30%;justify-content:space-between">
@@ -78,14 +83,14 @@
                                 <p style="border:1px solid black;width:30px">{{produit.qte}}</p>
                                 <i class='bx bx-plus' (click)="plus_qty(produit)"></i>
                             </div>
-                            <p>{{produit.prix}}0 €</p>
+                            <p>{{produit.prix * produit.qte}}0 €</p>
                         </div>
-                        <button class="ajoute_panier">AJOUTER AU PANIER</button>
+                        <button class="ajoute_panier" (click)="addPanier(produit)">AJOUTER AU PANIER</button>
                     </div>
-                </a>
+                
             </div>
         </div>
     </div>
     <app-footer></app-footer>
-    <app-cart-shop></app-cart-shop>
+    <app-cart-shop [panier]="panier"></app-cart-shop>
 </div>

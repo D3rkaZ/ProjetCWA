@@ -1,41 +1,45 @@
-<div>
-    <form >
-        <div>
-            <label>Nom :</label>
-            <input type="text"  [(ngModel)]="nom" name="nom">
+<div class="Grid_ajouteProdui">
+    <app-menu></app-menu>
+    <div class="Row2_ajouteProduit">
+        <div class="ajouteProduit_inner">
+            <div>
+                <label>Nom :</label>
+                <input type="text"  [(ngModel)]="nom" name="nom">
+            </div>
+            <div>
+                <label>Titre:</label>
+                <input type="text"  [(ngModel)]="titre" name="titre">
+            </div>
+            <div>
+                <label>Url:</label>
+                <input type="text"  [(ngModel)]="url" name="url">
+            </div>
+            <div>
+                <label>Description :</label>
+                <input type="text"  [(ngModel)]="description" name="description">
+            </div>
+            <div>
+                <label>Suggestion:</label>
+                <input type="text"  [(ngModel)]="suggestion" name="suggestion">
+            </div>
+            <div>
+                <label>Pays:</label>
+                <input type="text"  [(ngModel)]="pays" name="pays">
+            </div>
+            <div>
+                <label>Prix :</label>
+                <input type="number" [(ngModel)]="prix" name="prix"> 
+            </div>
+            <div>
+                <label>Type:</label>
+                <input type="text" [(ngModel)]="type" name="type"> 
+            </div>
+            <div>
+                <label>Parfum:</label>
+                <input type="text"  [(ngModel)]="parfum" name="parfum">
+            </div>
+            <button (click)="addProduit()" class="btn_add">Ajoute Produit</button>
         </div>
-        <div>
-            <label>Titre:</label>
-            <input type="text"  [(ngModel)]="titre" name="titre">
-        </div>
-        <div>
-            <label>Url:</label>
-            <input type="text"  [(ngModel)]="url" name="url">
-        </div>
-        <div>
-            <label>Description :</label>
-            <input type="text"  [(ngModel)]="description" name="description">
-        </div>
-        <div>
-            <label>Suggestion:</label>
-            <input type="text"  [(ngModel)]="suggestion" name="suggestion">
-        </div>
-        <div>
-            <label>Pays:</label>
-            <input type="text"  [(ngModel)]="pays" name="pays">
-        </div>
-        <div>
-            <label>Prix :</label>
-            <input type="number" [(ngModel)]="prix" name="prix"> 
-        </div>
-        <div>
-            <label>Type:</label>
-            <input type="text" [(ngModel)]="type" name="type"> 
-        </div>
-        <div>
-            <label>Parfum:</label>
-            <input type="text"  [(ngModel)]="parfum" name="parfum">
-        </div>
-        <button (click)="addProduit()">Ajoute Produit</button>
-    </form>
+    </div>
+    <app-footer></app-footer>
 </div>

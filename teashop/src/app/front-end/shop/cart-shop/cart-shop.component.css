@@ -14,7 +14,7 @@ div.cart_shop
 }
 div.cart_shop_click
 {
-    width: 15%;     
+    width: 25%;     
     position:fixed ;
     top:42%;
     right: 0%;
@@ -22,7 +22,7 @@ div.cart_shop_click
     background-color: #f1f4f0 ;
     color: white;
     font-family: 'Crimson Text';
-    height: auto;
+    height: 18em;
 }
 div.cart_shop_inner
 {
@@ -48,4 +48,14 @@ div.cart_shop_item_click
 }
 ul.list_item_cart{
     border-bottom: 1px solid #546a2a;
+    height: 15em;
+    padding: unset;
+    overflow-y: scroll;
+}
+
+ul.list_item_cart li {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    padding-left: 3%;
 }

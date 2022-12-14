@@ -18,9 +18,10 @@ button.btn_cart
 ul.list_recommend_items
 {
     padding: unset;
-    display: grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
-    grid-column-gap: 1em;
+    display: flex;
+    /* grid-template-columns:1fr 1fr 1fr 1fr;
+    grid-column-gap: 1em; */
+    overflow-y: scroll;
 }
 div.item_recommend_img
 {
@@ -36,7 +37,7 @@ li.item_recommend
 {
     text-align: center;
     height: 20em;
-    border: 1px solid red;
+    border: 1px solid lightgray;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

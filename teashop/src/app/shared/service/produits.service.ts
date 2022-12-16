@@ -66,7 +66,8 @@ export class ProduitsService {
           prix : produit.prix,
           suggestion : "",
           type: produit.type,
-          pays : produit.pays
+          pays : produit.pays,
+          qteStock : produit.qteStock
         }
       );
     }

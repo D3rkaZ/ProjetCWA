@@ -118,7 +118,7 @@ export class PaymentComponent implements OnInit {
    }
    validerPaypal()
    {
-    this.method_paypal ="paypal";
+    this.methode_paiement ="paypal";
     this.commande.methode_paiement = this.methode_paiement;
     this.cS.createCommande(this.commande);
     this.cS.envoieCommande(this.commande);

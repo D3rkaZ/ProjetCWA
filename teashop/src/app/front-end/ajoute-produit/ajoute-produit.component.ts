@@ -54,9 +54,23 @@ export class AjouteProduitComponent implements OnInit {
     this.produitObjet.suggestion =this.suggestion;
     this.produitObjet.url =this.url;
     this.produitObjet.prix =this.prix;
-    this.produitObjet.qte =0;
+    this.produitObjet.qte =1;
+    this.produitObjet.qteStock=50;
     this.pS.addProduits(this.produitObjet);
-  
+
+    alert("Ajoute le produit dans masagin !");
+
+
+    this.id = '',
+    this.nom = '' ,
+    this.titre = '',
+    this.url = '',
+    this.type = '',
+    this.parfum = '',
+    this.pays = '',
+    this.prix =  0 ,
+    this.description = '',
+    this.suggestion = ''
   }
   ngOnInit(): void {
   }

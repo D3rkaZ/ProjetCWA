@@ -50,7 +50,7 @@ export class UtilisateurService {
                 prenom : user.prenom,
                 date_naissance : user.date_naissance,
                 panier : [],
-                role : "admin"
+                role : "client"
               }
             );
           }

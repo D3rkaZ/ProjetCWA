@@ -30,6 +30,14 @@ td.name_produit div{
 td.price_produit,td.qty_produit,td.subPrice_produit{
     text-align: center;
 }
+td.qty_produit
+{
+    width: 3%;
+}
+input.qteStock
+{
+    width:30%;
+}
 img.panierItem_url
 {
     object-fit: cover;

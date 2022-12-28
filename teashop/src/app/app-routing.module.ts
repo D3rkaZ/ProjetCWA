@@ -65,7 +65,7 @@ const routes: Routes = [
   {
     path:'retireProduit',
     component : RetireProduitComponent,
-    canActivate : [AuthAdminGuard]
+    //canActivate : [AuthAdminGuard]
   }
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProduitsService } from '../../shared/service/produits.service';
 import { Produit } from 'src/app/shared/modele/produit';
+import { AuthValideGuard } from '../../shared/authGuards/auth-valide.guard';
 
 @Component({
   selector: 'app-retire-produit',
@@ -27,6 +28,10 @@ export class RetireProduitComponent implements OnInit {
   deleteProduit(event:any)
   {
     this.pS.deleteProduit(event);
+  }
+  updateQteStock(produit:any,event:any)
+  {
+    this.pS.update_QteStock(produit,event.target.value)
   }
   ngOnInit():void {
   }

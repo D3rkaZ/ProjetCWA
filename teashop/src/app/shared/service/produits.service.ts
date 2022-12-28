@@ -107,6 +107,15 @@ export class ProduitsService {
         }
       )
     }
+
+    update_QteStock(produit:Produit, qteStock:number)
+    {
+      return this.database.collection('/Produits').doc(produit.id).update(
+        {
+          qteStock : qteStock
+        }
+      )
+    }
     //delete produit
     deleteProduit(produit:Produit)
     {

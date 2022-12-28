@@ -49,25 +49,12 @@ export class LoginComponent implements OnInit {
     if(localStorage.getItem("token")=="true")
     {
       let email:any = localStorage.getItem("email");
-      // this.uS.getUtilisateur(email).subscribe(res =>
-      //   {
-      //     this.user = res.map((e:any)=>
-      //     {
-      //       const data = e.payload.doc.data();
-      //       data.id = e.payload.doc.id;
-      //       return data;
-      //     })
-      //     this.utilisateur=this.user[0];
-      //     console.log(this.utilisateur)
-      //   })
-    
       this.uS.getUtilisateurByEmail(email).then((doc)=>
       {
         if(doc.exists)
         {
           const user:any = doc.data();
           this.utilisateur = user;
-          // this.uS.envoieUtilisateurObj(this.utilisateur);
         }
         
       })

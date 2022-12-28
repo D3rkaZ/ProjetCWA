@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="poid_produit">
-                        <p>100 g</p>
+                        <p style="border:3px solid rgba(110, 182, 92, 0.791)">150 g</p>
                         <p>500 g</p>
                         <p>1 kg</p>
                     </div>  
@@ -25,7 +25,8 @@
                             <p class="qty_produit">{{produitObjet.qte}}</p>
                             <i class='bx bx-plus' (click)="plus_qty()"></i>
                         </div>
-                        <p>en stock <i class='bx bx-check'></i></p>
+                        <p *ngIf="produitObjet.qteStock >0">en stock <i class='bx bx-check'></i></p>
+                        <p *ngIf="produitObjet.qteStock <=0" >rupture de stock<i class='bx bx-x'></i></p>
                     </div>
                     <button class="add_produit" (click)="addPanier()">Ajouter dans le panier</button>
                 </div>

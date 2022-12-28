@@ -44,7 +44,7 @@ export class ShopComponent implements OnInit {
 
   utilisateur:Utilisateur = {
     id:'',
-    nom:'',
+    nom:'Mon compte',
     prenom:'',
     email:'',
     mdp:'',
@@ -56,9 +56,6 @@ export class ShopComponent implements OnInit {
 
 
   constructor(private pS:ProduitsService, private route: ActivatedRoute, private router:Router,private paniS:PanierService,private uS:UtilisateurService,private authAdmin:AuthAdminService) {
-    // this.route.queryParams.subscribe((params:any) => {
-    //   this.nameUser = params.name;
-    // })
     this.getAllProuit();
     this.isConnected=localStorage.getItem("token");
     if(this.isConnected=="true")
@@ -167,6 +164,12 @@ export class ShopComponent implements OnInit {
   plus_qty(produit:any)
   {
     produit.qte++;
+    if(produit.qte > produit.qteStock)
+    {
+      alert("Il nous reste "+produit.qteStock+ "!!");
+      produit.qte--;
+    }
+    
   }
 
   addPanier(event:any)
@@ -194,9 +197,6 @@ export class ShopComponent implements OnInit {
             let stock:any = event.qteStock;
             if(panierItem.qteProduit <= event.qteStock)
             {
-             console.log (panierItem.qteProduit);
-             console.log (event.qteStock);
-
             for (let produit of this.panier)
             {
               if(produit.idProduit == panierItem.idProduit)
@@ -223,6 +223,8 @@ export class ShopComponent implements OnInit {
             )
             alert("Ajoute " + event.nom + " dans votre panier !");
             this.paniS.envoiePanier(this.panier);
+            console.log (panierItem.qteProduit);
+            console.log (event.qteStock);
           }
           else
           {

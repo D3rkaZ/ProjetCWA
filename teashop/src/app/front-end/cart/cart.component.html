@@ -38,7 +38,7 @@
                                     </td>
                                     <td class="price_produit">{{panierItem.prixProduit}}</td>
                                     <td class="qty_produit">
-                                        <input type="number" [value]="panierItem.qteProduit" class="qte_produit" min="1" [max]="panierItem.qteStock" (click)="changeQte(panierItem,$event)">
+                                        <input type="number" [value]="panierItem.qteProduit" class="qte_produit" min="1"  (change)="changeQte(panierItem,$event)">
                                     </td>
                                     <td class="subPrice_produit">
                                         <p>{{panierItem.qteProduit * panierItem.prixProduit}} €</p>

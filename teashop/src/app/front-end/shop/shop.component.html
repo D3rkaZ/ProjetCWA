@@ -26,7 +26,7 @@
     </div>
     <div class="admin" *ngIf="utilisateur.role == 'admin'">
         <button class="btn_admin" (click)="admin_add()">Ajoute d'un produit</button>
-        <button class="btn_admin" (click)="admin_minus()">Retire d'un produit</button>
+        <button class="btn_admin" (click)="admin_minus()">Modifie d'un produit</button>
     </div>
     <div [class]="class_row_filter">
         <div class="inner_filter">
@@ -82,7 +82,7 @@
                                 <i class='bx bx-minus' (click)="minus_qty(produit)"></i>
                                 <p style="border:1px solid black;width:30px">{{produit.qte}}</p>
                                 <i class='bx bx-plus' (click)="plus_qty(produit)"></i>
-                            </div>
+                            </div>                            
                             <p>{{produit.prix * produit.qte}} €</p>
                         </div>
                         <button class="ajoute_panier" (click)="addPanier(produit)">AJOUTER AU PANIER</button>

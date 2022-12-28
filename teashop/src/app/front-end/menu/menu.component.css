@@ -74,8 +74,6 @@ input.event_search
 div.block_user
 {
     width: 65%;
-    display: flex;
-    justify-content: space-between ;
 }
 i.bxs-user,i.bxs-shopping-bag
 {

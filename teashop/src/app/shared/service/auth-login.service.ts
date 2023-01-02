@@ -58,13 +58,10 @@ export class AuthLoginService {
     .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    this.router.navigate(['/login'])
+    this.login(utilisateur.email, utilisateur.mdp);
   })
   .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert("l'adresse email a été exist !")
-    // ..
+    alert(error.message)
   });
   }
 

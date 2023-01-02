@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 import { PanierService } from './panier.service';
 
@@ -6,7 +7,11 @@ describe('PanierService', () => {
   let service: PanierService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+        providers: [
+            {provide: AngularFirestore, useClass: AngularFirestoreStub}
+        ]
+    });
     service = TestBed.inject(PanierService);
   });
 
@@ -14,3 +19,5 @@ describe('PanierService', () => {
     expect(service).toBeTruthy();
   });
 });
+
+class AngularFirestoreStub{}

@@ -56,7 +56,7 @@ export class ShopComponent implements OnInit {
 
 
   constructor(private pS:ProduitsService, private route: ActivatedRoute, private router:Router,private paniS:PanierService,private uS:UtilisateurService,private authAdmin:AuthAdminService) {
-    this.getAllProuit();
+    this.getAllProduit();
     this.isConnected=localStorage.getItem("token");
     if(this.isConnected=="true")
     {
@@ -122,11 +122,11 @@ export class ShopComponent implements OnInit {
     this.paysFilter="";
     this.typeFilter="";
     this.parfumFilter="";
-    this.getAllProuit();
+    this.getAllProduit();
     this.changeDisplay();
   }
 //
-  getAllProuit()
+  getAllProduit()
   {
     this.pS.getAllProduits().subscribe(res =>
       {
@@ -285,6 +285,4 @@ export class ShopComponent implements OnInit {
         }
       })
   }
-
-  
 }

@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AuthLoginService } from '../../shared/service/auth-login.service';
+import { UtilisateurService } from '../../shared/service/utilisateur.service';
 
 import { MenuComponent } from './menu.component';
 
@@ -8,7 +10,11 @@ describe('MenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenuComponent ]
+      declarations: [ MenuComponent ],
+      providers:[
+        {provide: AuthLoginService, useClass: AuthLoginServiceStub},
+        {provide: UtilisateurService, useClass: UtilisateurServiceStub},
+      ]
     })
     .compileComponents();
 
@@ -21,3 +27,5 @@ describe('MenuComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+class AuthLoginServiceStub{}
+class UtilisateurServiceStub{ }

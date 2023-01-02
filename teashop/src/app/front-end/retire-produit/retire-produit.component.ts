@@ -24,7 +24,6 @@ export class RetireProduitComponent implements OnInit {
       })
     }
 
-
   deleteProduit(event:any)
   {
     this.pS.deleteProduit(event);

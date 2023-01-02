@@ -1,4 +1,7 @@
+import { Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
+import { UtilisateurService } from 'src/app/shared/service/utilisateur.service';
 
 import { LoginComponent } from './login.component';
 
@@ -8,7 +11,12 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ LoginComponent ],
+      providers:[
+        {provide:AuthLoginService, useClass: AuthLoginServiceStub},
+        {provide:UtilisateurService, useClass: UtilisateurServiceStub},
+        {provide:Router, useClass: RouterStub}
+      ]
     })
     .compileComponents();
 
@@ -21,3 +29,7 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+class AuthLoginServiceStub{}
+class UtilisateurServiceStub{}
+class RouterStub{}

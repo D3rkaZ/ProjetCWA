@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DocumentChangeAction } from '@angular/fire/compat/firestore';
+import { Observable, of } from 'rxjs';
+import { ProduitsService } from 'src/app/shared/service/produits.service';
 
 import { RetireProduitComponent } from './retire-produit.component';
 
@@ -8,7 +11,10 @@ describe('RetireProduitComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RetireProduitComponent ]
+      declarations: [ RetireProduitComponent ],
+      providers: [
+          {provide: ProduitsService, useClass: ProduitsServiceStub}
+      ]
     })
     .compileComponents();
 
@@ -21,3 +27,8 @@ describe('RetireProduitComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+class ProduitsServiceStub{
+    getAllProduits(): Observable<DocumentChangeAction<unknown>[]>{
+        return of([]);
+    }
+}

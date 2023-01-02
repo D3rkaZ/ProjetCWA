@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit {
           const user:any = doc.data();
           this.utilisateur = user;
         }
-        
       })
     }
   }

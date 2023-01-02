@@ -13,8 +13,6 @@ import { UtilisateurService } from '../../shared/service/utilisateur.service';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-
-
   public method_visa:string= "block_none";
   public method_paypal:string = "block_none";
   public method_ecart:string = "block_none";

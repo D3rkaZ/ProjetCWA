@@ -4,6 +4,7 @@ import { Utilisateur } from '../modele/utilisateur';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { panierItem } from '../modele/panierItem';
+import { AuthLoginService } from '../../shared/service/auth-login.service';
 
 
 @Injectable({

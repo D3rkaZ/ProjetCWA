@@ -100,7 +100,7 @@ export class CartComponent implements OnInit {
     console.log(stock);
     this.pS.updateQteStock(this.panier[event],stock)
     this.panier.splice(event,1);
-    let email:any = localStorage.getItem("email");      
+    let email:any = localStorage.getItem("email");
     this.uS.getDoc(email).update(
       {
         panier: this.panier

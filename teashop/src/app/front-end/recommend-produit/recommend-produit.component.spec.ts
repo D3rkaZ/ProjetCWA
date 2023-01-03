@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DocumentChangeAction } from '@angular/fire/compat/firestore';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { of, Observable } from 'rxjs';
 import { ProduitsService } from 'src/app/shared/service/produits.service';
 
@@ -30,10 +30,8 @@ describe('RecommendProduitComponent', () => {
   });
 });
 class ProduitsServiceStub{
-    /*
-    getProduitByType(t:string): Observable<DocumentChangeAction<unknown>>{
+    getProduitByType(): Observable<DocumentChangeAction<unknown>>{
         return of();
     }
-    */
 }
 class RouterStub{}

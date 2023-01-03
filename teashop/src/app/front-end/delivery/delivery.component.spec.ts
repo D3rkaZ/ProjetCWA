@@ -1,6 +1,14 @@
+import { Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PanierService } from '../../shared/service/panier.service';
+import { UtilisateurService } from 'src/app/shared/service/utilisateur.service';
+import { Utilisateur } from '../../shared/modele/utilisateur';
+import { CommandeService } from '../../shared/service/commande.service';
+import { AuthPaymentService } from '../../shared/authGuards/auth-payment.service';
 
 import { DeliveryComponent } from './delivery.component';
+import { BehaviorSubject } from 'rxjs';
+import { panierItem } from 'src/app/shared/modele/panierItem';
 
 describe('DeliveryComponent', () => {
   let component: DeliveryComponent;
@@ -8,7 +16,14 @@ describe('DeliveryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeliveryComponent ]
+      declarations: [ DeliveryComponent ],
+      providers: [
+        {provide: UtilisateurService, useClass: UtilisateurServiceStub},
+        {provide: PanierService, useClass: PanierServiceStub},
+        {provide: CommandeService, useClass: CommandeServiceStub},
+        {provide: Router, useClass: RouterStub},
+        {provide: AuthPaymentService, useClass: AuthPaymentServiceStub},
+      ]
     })
     .compileComponents();
 
@@ -21,3 +36,12 @@ describe('DeliveryComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+class UtilisateurServiceStub{
+    public utilisateurObj = new BehaviorSubject<Utilisateur>({id:"",nom:"" ,prenom :"" , email:"" ,mdp:"", date_naissance: "", role :"" , panier : []});
+}
+class CommandeServiceStub{}
+class RouterStub{}
+class AuthPaymentServiceStub{}
+class PanierServiceStub{
+    public panierutilisateur = new BehaviorSubject<panierItem[]>([]);
+}

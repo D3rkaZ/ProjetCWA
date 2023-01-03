@@ -47,6 +47,7 @@ export class ProduitComponent implements OnInit {
    }
 
   ngOnInit(): void {
+      console.log(this.activeRoute.paramMap);
     this.activeRoute.paramMap.subscribe(params =>
       {
         const id :any= params.get('id');

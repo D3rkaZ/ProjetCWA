@@ -4,8 +4,6 @@ import { Utilisateur } from '../../shared/modele/utilisateur';
 import { UtilisateurService } from '../../shared/service/utilisateur.service';
 import { Router } from '@angular/router';
 import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
-import { updatePassword } from 'firebase/auth';
-import { panierItem } from '../../shared/modele/panierItem';
 
 @Component({
   selector: 'app-login',
@@ -42,8 +40,8 @@ export class LoginComponent implements OnInit {
 
   user:Utilisateur[]=[];
   newPassword:string="";
-  hihinom:string="";
-  constructor(private auth:AuthLoginService , private uS:UtilisateurService,private router:Router) { 
+
+  constructor(private auth:AuthLoginService, private uS:UtilisateurService, private router:Router) { 
     this.session_connecte = localStorage.getItem("token");
 
     if(localStorage.getItem("token")=="true")
@@ -60,8 +58,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+
   login()
   {
     if(this.email=="")

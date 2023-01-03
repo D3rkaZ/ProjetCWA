@@ -7,8 +7,17 @@ import { MenuComponent } from './menu.component';
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
+  //let fauxUtilisateurService: any;
+  let localStorage;
 
   beforeEach(async () => {
+      localStorage = {};
+
+      spyOn(window.localStorage, 'getItem').and.callFake((key) =>
+        key in localStorage ? localStorage[key] : null
+     );
+    //fauxUtilisateurService = jasmine.createSpyObj('UtilisateurService', ['getUtilisateurByEmail']);
+    //(<jasmine.Spy>fauxUtilisateurService.getUtilisateurByEmail).and.callFake(() => Promise.resolve());
     await TestBed.configureTestingModule({
       declarations: [ MenuComponent ],
       providers:[

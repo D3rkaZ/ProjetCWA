@@ -13,8 +13,7 @@ export class MenuComponent implements OnInit {
   public uid:any=localStorage.getItem("uid");
   public email:any=localStorage.getItem("email");
   public token:any=localStorage.getItem("token");
-  public utilisateur:Utilisateur=
-  {
+  public utilisateur:Utilisateur = {
     id:'',
     nom:'Mon compte',
     prenom:'',

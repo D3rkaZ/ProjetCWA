@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { DocumentChangeAction } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
 import { ProduitsService } from 'src/app/shared/service/produits.service';
@@ -12,6 +15,7 @@ describe('RetireProduitComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ RetireProduitComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
           {provide: ProduitsService, useClass: ProduitsServiceStub}
       ]

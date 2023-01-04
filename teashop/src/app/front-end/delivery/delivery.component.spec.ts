@@ -1,5 +1,8 @@
 import { Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { PanierService } from '../../shared/service/panier.service';
 import { UtilisateurService } from 'src/app/shared/service/utilisateur.service';
 import { Utilisateur } from '../../shared/modele/utilisateur';
@@ -17,6 +20,7 @@ describe('DeliveryComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ DeliveryComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
         {provide: UtilisateurService, useClass: UtilisateurServiceStub},
         {provide: PanierService, useClass: PanierServiceStub},

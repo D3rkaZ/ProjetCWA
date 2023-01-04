@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { Commande } from 'src/app/shared/modele/commande';
 import { BehaviorSubject } from 'rxjs';
 import { CommandeService } from 'src/app/shared/service/commande.service';
@@ -12,6 +15,7 @@ describe('ValideComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ValideComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
         {provide: CommandeService, useClass: CommandeServiceStub}
       ]

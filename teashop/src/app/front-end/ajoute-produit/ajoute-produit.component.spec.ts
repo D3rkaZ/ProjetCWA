@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { ProduitsService } from 'src/app/shared/service/produits.service';
 
 import { AjouteProduitComponent } from './ajoute-produit.component';
@@ -15,6 +18,7 @@ describe('AjouteProduitComponent', () => {
     (<jasmine.Spy>fauxProduitsService.addProduit).and.returnValue(Promise.resolve());
     await TestBed.configureTestingModule({
       declarations: [ AjouteProduitComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
           {provide: ProduitsService, useValue: fauxProduitsService}
       ]

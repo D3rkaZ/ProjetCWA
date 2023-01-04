@@ -1,5 +1,8 @@
 import { Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { AuthValideService } from 'src/app/shared/authGuards/auth-valide.service';
 import { CommandeService } from 'src/app/shared/service/commande.service';
 import { UtilisateurService } from 'src/app/shared/service/utilisateur.service';
@@ -15,6 +18,7 @@ describe('PaymentComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PaymentComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
         {provide: CommandeService, useClass: CommandeServiceStub},
         {provide: Router, useClass: RouterStub},

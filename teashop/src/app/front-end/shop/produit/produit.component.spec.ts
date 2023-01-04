@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { RouterTestingModule } from '@angular/router/testing';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { PanierService } from '../../../shared/service/panier.service';
 import { ProduitsService } from '../../../shared/service/produits.service';
@@ -7,6 +11,7 @@ import { panierItem } from '../../../shared/modele/panierItem';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { ProduitComponent } from './produit.component';
+import { Component } from '@angular/core';
 import { DocumentChangeAction } from '@angular/fire/compat/firestore';
 
 describe('ProduitComponent', () => {
@@ -15,7 +20,11 @@ describe('ProduitComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProduitComponent ],
+      declarations: [
+        ProduitComponent,
+        MockNavComponent
+      ],
+      imports : [AngularFireModule.initializeApp(environment.firebase), RouterTestingModule],
       providers: [
         {provide: ProduitsService, useClass: ProduitsServiceStub},
         {provide: PanierService, useClass: PanierServiceStub},
@@ -49,3 +58,9 @@ class PanierServiceStub{
 }
 class UtilisateurServiceStub{}
 class RouterStub{}
+
+@Component({
+  selector: 'app-menu',
+  template: ''
+})
+class MockNavComponent{}

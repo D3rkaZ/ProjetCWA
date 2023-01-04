@@ -1,4 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 import { PanierService } from './panier.service';
@@ -8,9 +11,10 @@ describe('PanierService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        providers: [
-            {provide: AngularFirestore, useClass: AngularFirestoreStub}
-        ]
+      imports : [AngularFireModule.initializeApp(environment.firebase)],
+      providers: [
+        {provide: AngularFirestore, useClass: AngularFirestoreStub}
+      ]
     });
     service = TestBed.inject(PanierService);
   });

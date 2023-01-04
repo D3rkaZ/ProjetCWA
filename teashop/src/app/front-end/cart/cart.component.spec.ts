@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { UtilisateurService } from 'src/app/shared/service/utilisateur.service';
 import { Router } from '@angular/router';
 import { PanierService } from '../../shared/service/panier.service';
@@ -14,6 +17,7 @@ describe('CartComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ CartComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
         {provide: UtilisateurService, useClass: UtilisateurServiceStub},
         {provide: Router, useClass: RouterStub},

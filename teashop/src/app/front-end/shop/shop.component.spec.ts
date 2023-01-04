@@ -1,5 +1,9 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AuthAdminService } from 'src/app/shared/authGuards/auth-admin.service';
 import { AngularFirestore, DocumentChangeAction} from '@angular/fire/compat/firestore'
 import { PanierService } from 'src/app/shared/service/panier.service';
@@ -19,6 +23,7 @@ describe('ShopComponent', () => {
     (<jasmine.Spy>fauxUtilisateurService.getUtilisateurByEmail).and.callFake(() => Promise.resolve());
     await TestBed.configureTestingModule({
       declarations: [ ShopComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase), RouterTestingModule],
       providers: [
         {provide: ProduitsService, useClass: ProduitsServiceStub},
         {provide: ActivatedRoute, useClass: ActivatedRouteStub},

@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 import { AuthLoginService } from '../../shared/service/auth-login.service';
 import { UtilisateurService } from '../../shared/service/utilisateur.service';
 
@@ -20,6 +23,7 @@ describe('MenuComponent', () => {
     //(<jasmine.Spy>fauxUtilisateurService.getUtilisateurByEmail).and.callFake(() => Promise.resolve());
     await TestBed.configureTestingModule({
       declarations: [ MenuComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers:[
         {provide: AuthLoginService, useClass: AuthLoginServiceStub},
         {provide: UtilisateurService, useClass: UtilisateurServiceStub},

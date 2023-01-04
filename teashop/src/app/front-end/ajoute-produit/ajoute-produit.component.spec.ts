@@ -17,6 +17,7 @@ describe('AjouteProduitComponent', () => {
     fauxProduitsService = jasmine.createSpyObj('ProduitsService', ['addProduit']);
     // L'appelle de cette méthode renvoie une promesse résolue (tout c'est bien passé)
     (<jasmine.Spy>fauxProduitsService.addProduit).and.returnValue(Promise.resolve());
+
     await TestBed.configureTestingModule({
       declarations: [ 
         AjouteProduitComponent

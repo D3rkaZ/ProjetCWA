@@ -46,13 +46,13 @@ describe('LoginComponent', () => {
   });
 /*
   it('connexion reussis ?', () => {
-    component.email = "toto@gmail.com";
-    component.mdp = "totoestla";
-    console.log(`component email = ${component.email}`)
-    fixture.detectChanges();
-    spyOn(authService, 'login').and.callThrough();
-    component.login();
-    expect(authService.login).toHaveBeenCalledWith('toto@gmail.com', 'totoestla');
+    // component.email = "toto@gmail.com";
+    // component.mdp = "totoestla";
+    // console.log(`component email = ${component.email}`)
+    // fixture.detectChanges();
+    // spyOn(authService, 'login').and.callThrough();
+    // component.login();
+    // expect(authService.login).toHaveBeenCalledWith('toto@gmail.com', 'totoestla');
   });
 */
 });

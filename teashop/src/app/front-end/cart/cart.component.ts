@@ -41,9 +41,7 @@ export class CartComponent implements OnInit {
   changeQte(produit:any,event:any)
   {
     let stock:number = produit.qteStock + produit.qteProduit;
-    console.log("stock : " + stock)
     let stockTempo:number = stock - Number(event.target.value)
-    console.log("stockTempo : " + stockTempo)
     let email:any = localStorage.getItem("email");
     if( stockTempo >=0)
     {
@@ -84,7 +82,6 @@ export class CartComponent implements OnInit {
           panier: this.panier
         }
       )
-      console.log(this.panier);
       this.panierSer.envoiePanier(this.panier); 
       this.uS.envoieUtilisateurObj(this.utilisateur);
       this.authDely.activeAuth();
@@ -97,7 +94,6 @@ export class CartComponent implements OnInit {
   deletePanierItem(event:any)
   {
     let stock:number = this.panier[event].qteStock + this.panier[event].qteProduit;
-    console.log(stock);
     this.pS.updateQteStock(this.panier[event],stock)
     this.panier.splice(event,1);
     let email:any = localStorage.getItem("email");

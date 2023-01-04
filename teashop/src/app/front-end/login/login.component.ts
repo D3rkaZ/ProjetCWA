@@ -124,6 +124,5 @@ export class LoginComponent implements OnInit {
   updatePassword()
   {
     this.auth.updateMdp(this.newPassword);
-    //console.log(this.newPassword);
   }
 }

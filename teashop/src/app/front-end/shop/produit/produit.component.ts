@@ -42,12 +42,10 @@ export class ProduitComponent implements OnInit {
     this.panierSer.panierutilisateur.subscribe((data:any)=>
     {
       this.panier =data;
-      // console.log(this.panier);
     })
    }
 
   ngOnInit(): void {
-      console.log(this.activeRoute.paramMap);
     this.activeRoute.paramMap.subscribe(params =>
       {
         const id :any= params.get('id');
@@ -77,10 +75,6 @@ export class ProduitComponent implements OnInit {
     this.produitObjet.qte++;
   }
 
-  recupTypeProduit(event:any)
-  {
-    console.log(event);
-  }
 
   addPanier()
   {
@@ -107,9 +101,6 @@ export class ProduitComponent implements OnInit {
             let stock:any = this.produitObjet.qteStock;
             if(panierItem.qteProduit <= this.produitObjet.qteStock)
             {
-             console.log (panierItem.qteProduit);
-             console.log (this.produitObjet.qteStock);
-
             for (let produit of this.panier)
             {
               if(produit.idProduit == panierItem.idProduit)

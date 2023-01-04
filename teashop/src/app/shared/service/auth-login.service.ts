@@ -31,7 +31,6 @@ export class AuthLoginService {
       this.router.navigate(['/shop'], { queryParams: { uid:user?.uid } });
     },(err:any) =>
     {
-      console.log('false');
       alert("Vérifiez votre email ou votre mot de passe !");
       this.router.navigate(['/login']);
     })

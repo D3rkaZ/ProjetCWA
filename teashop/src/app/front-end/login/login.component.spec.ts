@@ -1,16 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
+import { environment } from 'src/environments/environment';
+
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let authService: AuthLoginService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ LoginComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)]
     })
     .compileComponents();
+
+    authService = TestBed.inject(AuthLoginService);
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
@@ -20,4 +28,15 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('connexion reussis ?', () => {
+    component.email = "toto@gmail.com";
+    component.mdp = "totoestla";
+    console.log(`component email = ${component.email}`)
+    fixture.detectChanges();
+    spyOn(authService, 'login').and.callThrough();
+    component.login();
+    expect(authService.login).toHaveBeenCalledWith('toto@gmail.com', 'totoestla');
+  });
+
 });

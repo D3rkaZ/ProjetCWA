@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+
 import { DeliveryComponent } from './delivery.component';
 
 describe('DeliveryComponent', () => {
@@ -8,7 +11,8 @@ describe('DeliveryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeliveryComponent ]
+      declarations: [ DeliveryComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)]
     })
     .compileComponents();
 

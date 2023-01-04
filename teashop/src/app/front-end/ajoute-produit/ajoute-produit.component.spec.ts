@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+
 import { AjouteProduitComponent } from './ajoute-produit.component';
 
 describe('AjouteProduitComponent', () => {
@@ -8,7 +11,8 @@ describe('AjouteProduitComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AjouteProduitComponent ]
+      declarations: [ AjouteProduitComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)]
     })
     .compileComponents();
 

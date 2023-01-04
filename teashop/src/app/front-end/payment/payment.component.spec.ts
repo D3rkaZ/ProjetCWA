@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+
 import { PaymentComponent } from './payment.component';
 
 describe('PaymentComponent', () => {
@@ -8,7 +11,8 @@ describe('PaymentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaymentComponent ]
+      declarations: [ PaymentComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)]
     })
     .compileComponents();
 

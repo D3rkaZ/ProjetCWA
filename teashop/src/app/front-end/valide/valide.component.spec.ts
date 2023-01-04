@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+
 import { ValideComponent } from './valide.component';
 
 describe('ValideComponent', () => {
@@ -8,7 +11,8 @@ describe('ValideComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ValideComponent ]
+      declarations: [ ValideComponent ],
+      imports : [AngularFireModule.initializeApp(environment.firebase)]
     })
     .compileComponents();
 

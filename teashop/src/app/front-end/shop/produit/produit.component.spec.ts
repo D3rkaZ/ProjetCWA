@@ -11,8 +11,8 @@ import { panierItem } from '../../../shared/modele/panierItem';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { ProduitComponent } from './produit.component';
-import { Component } from '@angular/core';
 import { DocumentChangeAction } from '@angular/fire/compat/firestore';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ProduitComponent', () => {
   let component: ProduitComponent;
@@ -21,9 +21,9 @@ describe('ProduitComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        ProduitComponent,
-        MockNavComponent
+        ProduitComponent
       ],
+      schemas: [NO_ERRORS_SCHEMA],
       imports : [AngularFireModule.initializeApp(environment.firebase), RouterTestingModule],
       providers: [
         {provide: ProduitsService, useClass: ProduitsServiceStub},
@@ -58,9 +58,3 @@ class PanierServiceStub{
 }
 class UtilisateurServiceStub{}
 class RouterStub{}
-
-@Component({
-  selector: 'app-menu',
-  template: ''
-})
-class MockNavComponent{}

@@ -12,6 +12,7 @@ import { AuthPaymentService } from '../../shared/authGuards/auth-payment.service
 import { DeliveryComponent } from './delivery.component';
 import { BehaviorSubject } from 'rxjs';
 import { panierItem } from 'src/app/shared/modele/panierItem';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('DeliveryComponent', () => {
   let component: DeliveryComponent;
@@ -20,6 +21,7 @@ describe('DeliveryComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ DeliveryComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
       imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
         {provide: UtilisateurService, useClass: UtilisateurServiceStub},

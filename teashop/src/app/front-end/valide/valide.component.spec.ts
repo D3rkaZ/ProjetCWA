@@ -14,7 +14,9 @@ describe('ValideComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ValideComponent ],
+      declarations: [ 
+        ValideComponent
+      ],
       imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
         {provide: CommandeService, useClass: CommandeServiceStub}

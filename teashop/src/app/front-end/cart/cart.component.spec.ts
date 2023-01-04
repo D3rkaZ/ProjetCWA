@@ -9,6 +9,7 @@ import { AuthDelyService } from '../../shared/authGuards/auth-dely.service';
 import { ProduitsService } from '../../shared/service/produits.service';
 
 import { CartComponent } from './cart.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -16,7 +17,10 @@ describe('CartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartComponent ],
+      declarations: [ 
+        CartComponent
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers: [
         {provide: UtilisateurService, useClass: UtilisateurServiceStub},

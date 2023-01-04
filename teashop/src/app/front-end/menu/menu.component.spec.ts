@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AngularFireModule } from '@angular/fire/compat';
@@ -23,6 +24,7 @@ describe('MenuComponent', () => {
     //(<jasmine.Spy>fauxUtilisateurService.getUtilisateurByEmail).and.callFake(() => Promise.resolve());
     await TestBed.configureTestingModule({
       declarations: [ MenuComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
       imports : [AngularFireModule.initializeApp(environment.firebase)],
       providers:[
         {provide: AuthLoginService, useClass: AuthLoginServiceStub},

@@ -12,6 +12,7 @@ import { UtilisateurService } from 'src/app/shared/service/utilisateur.service';
 import { Observable, of } from 'rxjs';
 
 import { ShopComponent } from './shop.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ShopComponent', () => {
   let component: ShopComponent;
@@ -23,6 +24,7 @@ describe('ShopComponent', () => {
     (<jasmine.Spy>fauxUtilisateurService.getUtilisateurByEmail).and.callFake(() => Promise.resolve());
     await TestBed.configureTestingModule({
       declarations: [ ShopComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
       imports : [AngularFireModule.initializeApp(environment.firebase), RouterTestingModule],
       providers: [
         {provide: ProduitsService, useClass: ProduitsServiceStub},

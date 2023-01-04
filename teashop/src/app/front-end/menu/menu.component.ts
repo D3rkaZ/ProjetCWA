@@ -7,8 +7,8 @@ import { Utilisateur } from '../../shared/modele/utilisateur';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  providers:[AuthLoginService, UtilisateurService]
 })
+
 export class MenuComponent implements OnInit {
   public uid:any=localStorage.getItem("uid");
   public email:any=localStorage.getItem("email");
@@ -23,9 +23,10 @@ export class MenuComponent implements OnInit {
     role:'',
     panier: [],
   }
+
   constructor(private auth:AuthLoginService , private uS:UtilisateurService) { 
   }
-  
+
   ngOnInit(): void {
     if(this.token=="true")
     {
@@ -39,5 +40,4 @@ export class MenuComponent implements OnInit {
       })
     }
   }
-
 }

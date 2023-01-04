@@ -13,7 +13,8 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma')
     ],
      files: [
-        require('path').join(__dirname, 'polyfills.js')
+       // require('path').join(__dirname, 'polyfills.js')
+        'test/variable.js',
     ],
     client: {
       jasmine: {

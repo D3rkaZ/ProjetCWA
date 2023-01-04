@@ -8,14 +8,14 @@ describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
   //let fauxUtilisateurService: any;
-  let localStorage;
+  // let localStorage;
 
   beforeEach(async () => {
-      localStorage = {};
+    //  localStorage = {};
 
-      spyOn(window.localStorage, 'getItem').and.callFake((key) =>
-        key in localStorage ? localStorage[key] : null
-     );
+    //  spyOn(window.localStorage, 'getItem').and.callFake((key) =>
+    //    key in localStorage ? localStorage[key] : null
+    // );
     //fauxUtilisateurService = jasmine.createSpyObj('UtilisateurService', ['getUtilisateurByEmail']);
     //(<jasmine.Spy>fauxUtilisateurService.getUtilisateurByEmail).and.callFake(() => Promise.resolve());
     await TestBed.configureTestingModule({

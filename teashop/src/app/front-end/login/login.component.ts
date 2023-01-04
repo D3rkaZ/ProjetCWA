@@ -9,7 +9,6 @@ import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers :[AuthLoginService , UtilisateurService]
 })
 export class LoginComponent implements OnInit {
 

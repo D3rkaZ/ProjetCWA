@@ -51,7 +51,6 @@ export class DeliveryComponent implements OnInit {
     this.uS.utilisateurObj.subscribe((data:any)=>
     {
       this.utilisateur = data;
-      console.log(this.utilisateur)
       this.nom = this.utilisateur.nom;
       this.prenom = this.utilisateur.prenom;
     }
@@ -69,7 +68,6 @@ export class DeliveryComponent implements OnInit {
     this.livraison.pays = this.pays;
     this.livraison.ville = this.ville;
 
-    console.log(this.livraison);
     this.commande.emailUtilisateur = this.utilisateur.email,
     this.commande.panier = this.panier ,
     this.commande.addr_livraison = this.livraison,
@@ -90,12 +88,6 @@ export class DeliveryComponent implements OnInit {
      }
    }
 
-  ngOnInit(): void {
-    // this.panierSer.panierutilisateur.subscribe((data:any)=>
-    // {
-    //   this.panier =data;
-    //   console.log(this.panier);
-    // })
-  }
+  ngOnInit(): void { }
 
 }

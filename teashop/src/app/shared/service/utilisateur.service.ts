@@ -42,7 +42,6 @@ export class UtilisateurService {
             data.id = e.payload.doc.id;
             return data;
           });
-          console.log(users);
           if(users.length ==0)
           {
             this.database.collection('/Utilisateurs').doc(user.email).set(

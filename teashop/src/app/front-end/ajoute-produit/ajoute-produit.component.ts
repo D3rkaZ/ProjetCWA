@@ -42,7 +42,7 @@ export class AjouteProduitComponent implements OnInit {
   {
     if(this.titre=='' || this.nom=='' || this.url=='' || this.parfum=='' || this.pays=='' ||this.prix==0 || this.description=='')
     {
-      alert('Fill all inpuit fields');
+      alert('Fill all input fields');
       return;
     }
     this.produitObjet.nom =this.nom;

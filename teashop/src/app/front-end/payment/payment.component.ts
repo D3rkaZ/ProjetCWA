@@ -77,7 +77,6 @@ export class PaymentComponent implements OnInit {
     this.cS.commandeUtilisateur.subscribe((data)=>
     {
       this.commande=data
-      console.log(this.commande);
       this.adresse_livraison = this.commande.addr_livraison.adresse + " " +this.commande.addr_livraison.code_postal + " " + this.commande.addr_livraison.ville + " " + this.commande.addr_livraison.pays
       this.nomUtilisateur=     this.commande.addr_livraison.nom + " " + this.commande.addr_livraison.prenom;
     })

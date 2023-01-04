@@ -77,7 +77,6 @@ export class ShopComponent implements OnInit {
   {
     this.class_row_filter = this.class_row_filter == "Row_filter" ? "Row_filter_display-none" : "Row_filter";
     this.icon_plus = this.icon_plus == "bx bx-plus" ? "bx bx-x" : "bx bx-plus";
-    console.log(this.class_row_filter);
   }
 
   ProduitsFilter()
@@ -223,8 +222,6 @@ export class ShopComponent implements OnInit {
             )
             alert("Ajoute " + event.nom + " dans votre panier !");
             this.paniS.envoiePanier(this.panier);
-            console.log (panierItem.qteProduit);
-            console.log (event.qteStock);
           }
           else
           {
@@ -256,7 +253,6 @@ export class ShopComponent implements OnInit {
           data.id = e.payload.doc.id;
           return data;
         })
-        console.log(this.test);
       })
   }
 

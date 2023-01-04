@@ -90,8 +90,6 @@ export class ProduitsService {
       return this.database.collection('/Produits').doc("1").ref.get().then(
         (doc)=>{
           if (doc.exists) {
-            console.log("ok");
-            console.log(doc.data());
           }
         }
       )

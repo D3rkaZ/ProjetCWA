@@ -17,6 +17,7 @@ import { AuthPaymentService } from '../../shared/authGuards/auth-payment.service
 })
 export class DeliveryComponent implements OnInit {
 
+  /* Initialise des attributs nécessaires */
   public panier : panierItem[]=[];
   public nbProduits : number = 0;
   public utilisateur: Utilisateur = {id:"",nom:"" ,prenom :"" , email:"" ,mdp:"", date_naissance: "", role :"" , panier : []};  
@@ -29,6 +30,7 @@ export class DeliveryComponent implements OnInit {
   pays :string ="";
   telephone :string = "";
   prixTotal:number =0;
+  /* Initialise une commande */
   public commande:Commande ={
     idCommande :"",
     emailUtilisateur:"",
@@ -36,18 +38,20 @@ export class DeliveryComponent implements OnInit {
     addr_livraison : this.livraison,
     methode_paiement : ""
   }
+
   constructor(private panierSer :PanierService , private uS:UtilisateurService, private cS : CommandeService , private router:Router , private authPay:AuthPaymentService) {
+    /* Récupere le panier à partir de route /cart par BehaviorSubject */
     this.panierSer.panierutilisateur.subscribe((data:any)=>
     {
       this.panier =data;
     })
-
+    /* Calcule le nombre total des produits */
     for (let produit of this.panier)
     {
       let qte:any = produit.qteProduit
       this.nbProduits += Number(qte);
     }
-
+    /* Récupere des données d'utilisateur à partir de route /cart par BehaviorSubject */
     this.uS.utilisateurObj.subscribe((data:any)=>
     {
       this.utilisateur = data;
@@ -55,9 +59,10 @@ export class DeliveryComponent implements OnInit {
       this.prenom = this.utilisateur.prenom;
     }
     )
+    /* Calcule le prix total */
     this.calculTotal()
    }
-
+   /* Valide la commande */
    validerCommande()
    {
     this.livraison.nom = this.nom;

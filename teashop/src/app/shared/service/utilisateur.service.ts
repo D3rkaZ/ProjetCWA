@@ -47,6 +47,7 @@ export class UtilisateurService {
             this.database.collection('/Utilisateurs').doc(user.email).set(
               {
                 nom : user.nom,
+                email : user.email,
                 prenom : user.prenom,
                 date_naissance : user.date_naissance,
                 panier : [],

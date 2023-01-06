@@ -7,6 +7,7 @@ import { AuthPaymentService } from './auth-payment.service';
   providedIn: 'root'
 })
 export class AuthPaymentGuard implements CanActivate {
+  uid:any = localStorage.getItem('uid');
   constructor(private authpay:AuthPaymentService, private router:Router)
   {
 
@@ -21,7 +22,7 @@ export class AuthPaymentGuard implements CanActivate {
       }
       else
       {        
-        this.router.navigate(['/cart']);
+        this.router.navigate(['/cart'],{ queryParams: {uid :this.uid}});
         return this.authpay.isAuthorized;
       }
   }

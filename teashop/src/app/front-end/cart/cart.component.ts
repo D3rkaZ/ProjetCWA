@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
   type:string = "Thé Vert";
   prixTotal:number = 0 ;
   utilisateur: Utilisateur ={id:"",nom:"" ,prenom :"" , email:"" ,mdp:"", date_naissance: "", role :"" , panier : []};  
-
+  uid:any = localStorage.getItem("uid");
   constructor(private uS:UtilisateurService , private router: Router , private panierSer:PanierService , private authDely:AuthDelyService,private pS:ProduitsService) {
     /* localStorage : une méthode stockage de données en local du côte cliente
     * email : email de l'utilisateur (par défaut : none)
@@ -103,7 +103,8 @@ export class CartComponent implements OnInit {
       this.uS.envoieUtilisateurObj(this.utilisateur);
       this.authDely.activeAuth();
       /* Va-y sur la route delyvery */
-      this.router.navigate(['/dely']);
+      this.router.navigate(['/dely'],
+      { queryParams: {uid :this.uid}});
     }
     else
       alert("Votre panier est vide !")

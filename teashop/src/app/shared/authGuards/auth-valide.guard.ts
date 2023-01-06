@@ -7,6 +7,7 @@ import { AuthValideService } from './auth-valide.service';
   providedIn: 'root'
 })
 export class AuthValideGuard implements CanActivate {
+  uid:any = localStorage.getItem('uid');
   constructor(private authVali : AuthValideService , private router:Router)
   {
 
@@ -20,7 +21,7 @@ export class AuthValideGuard implements CanActivate {
       }
       else
       {
-        this.router.navigate(['/shop'])
+        this.router.navigate(['/shop'],{ queryParams: {uid :this.uid}})
         return this.authVali.isAuthorized;
       }
   }

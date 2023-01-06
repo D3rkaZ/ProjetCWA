@@ -32,6 +32,7 @@ export class DeliveryComponent implements OnInit {
   pays :string ="";
   telephone :string = "";
   prixTotal:number =0;
+  uid:any = localStorage.getItem('uid');
   /* Initialise une commande */
   public commande:Commande ={
     idCommande :"",
@@ -86,7 +87,7 @@ export class DeliveryComponent implements OnInit {
       alert("Enregistrement votre commande !");
       /* Active l'authorise d'accès au route /payment */
       this.authPay.activeAuth();
-      this.router.navigate(['/pay']);
+      this.router.navigate(['/pay'],{ queryParams: {uid :this.uid}});
     }
     else
     {

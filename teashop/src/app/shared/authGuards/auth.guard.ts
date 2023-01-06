@@ -8,7 +8,7 @@ import { AuthDelyService } from './auth-dely.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
+  uid:any = localStorage.getItem('uid');
   constructor(private auth_dely: AuthDelyService ,private router:Router)
   {}
   canActivate(
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
       } 
       else
       {
-          this.router.navigate(['/cart'])
+          this.router.navigate(['/cart'],{ queryParams: {uid :this.uid}})
         return this.auth_dely.isAuthorized
       }
 

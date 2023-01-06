@@ -39,6 +39,7 @@ export class PaymentComponent implements OnInit {
   nomUtilisateur : string = "";
   email:any = localStorage.getItem('email');
   prixTotal : number =0;
+  uid:any = localStorage.getItem("uid");
   /* Méthode Visa */
   changePaymentMethod_Visa()
   {
@@ -100,7 +101,7 @@ export class PaymentComponent implements OnInit {
           panier :[]
         }
       )
-      this.router.navigate(['/OK'])
+      this.router.navigate(['/OK'],{ queryParams: {uid :this.uid}})
       //this.cS.updateMethodPayment(this.commande,this.methode_paiement);
    }
    validerCadeau()

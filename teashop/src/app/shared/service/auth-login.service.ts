@@ -13,7 +13,7 @@ export class AuthLoginService {
   email:string="";
   password:string="";
   user:Utilisateur[] =[];
-  public uid:any="none";
+  public uid:any= localStorage.getItem('uid');
   constructor(private users:UtilisateurService,private fireauth : AngularFireAuth, private router : Router) { }
 
   // method login
@@ -45,11 +45,12 @@ export class AuthLoginService {
   logout()
   {
     /* Utilise la méthode signout de AngularFireBase */
+
     this.fireauth.signOut().then(() => {
-      this.router.navigate(['/home']);
       localStorage.setItem("token","false");
       localStorage.setItem("uid","none");
       localStorage.setItem("email","");
+      this.router.navigate(['/home'],{ queryParams: {uid :this.uid}});
     }).catch((error) => {
       // An error happened.
     });

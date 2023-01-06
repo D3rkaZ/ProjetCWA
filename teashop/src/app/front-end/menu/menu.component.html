@@ -20,16 +20,16 @@
     <div class="teashop_sub_menu">
         <ul class="block_menu">
             <li class="menu_item">
-                <a [routerLink]="['/home']" [queryParams]="{uid : uid}">Accueil</a>
+                <a routerLink='/home' [queryParams]="{uid : email}">Accueil</a>
             </li>
             <li class="menu_item">
-                <a [routerLink]="['/shop']"  [queryParams]="{uid : uid}">Magasin</a>
+                <a routerLink='/shop'  [queryParams]="{uid : email}">Magasin</a>
             </li>
             <li class="menu_item">
-                <a routerLink="/login" [queryParams]="{uid : uid}">Mon Compte</a>
+                <a routerLink='/login' [queryParams]="{uid : email}">Mon Compte</a>
             </li>
             <li class="menu_item">
-                <a routerLink="/cart" [queryParams]="{uid : uid}">Panier</a>
+                <a routerLink='/cart' [queryParams]="{uid : email}">Panier</a>
             </li>
         </ul>
     </div>

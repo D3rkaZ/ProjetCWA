@@ -31,6 +31,7 @@ export class ProduitsService {
     //get produits filter
     getProduitsFilter(map:any,nb:number)
     {
+      /* map contient une liste des options filtrages */
      let keys:string[]=[];
      let values:string[]=[];
      for(let value of map.values())
@@ -43,11 +44,14 @@ export class ProduitsService {
       if(map.get(key)!="")
         keys.push(key);
      }
+     /* dans ce cas on fait le filter avec 3 options (coleur , type , pays) */
       if(nb==3)
       return this.database.collection('/Produits', ref => ref.where(keys[0], "==",values[0]).where(keys[1], "==",values[1]).where(keys[2], "==",values[2])).snapshotChanges();
       else if(nb==2)
+      /* dans ce cas on fait le filter avec 2 options (coleur , type) ou (coleur , pays) */
       return this.database.collection('/Produits', ref => ref.where(keys[0], "==",values[0]).where(keys[1], "==",values[1])).snapshotChanges();
       else
+      /* dans ce cas on fait le filter avec 1 options (coleur) ou (pays) ou (type) */
       return this.database.collection('/Produits', ref => ref.where(keys[0], "==",values[0])).snapshotChanges();
     }
     //ajoute un produit

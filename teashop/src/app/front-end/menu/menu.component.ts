@@ -29,9 +29,6 @@ export class MenuComponent implements OnInit {
   }
 
   constructor(private auth:AuthLoginService , private uS:UtilisateurService) { 
-  }
-
-  ngOnInit(): void {
     if(this.token=="true")
     {
       /* Recrute d'utilisateur par email */
@@ -44,5 +41,9 @@ export class MenuComponent implements OnInit {
         }
       })
     }
+  }
+
+  ngOnInit(): void {
+
   }
 }

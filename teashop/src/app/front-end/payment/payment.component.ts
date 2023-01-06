@@ -13,10 +13,11 @@ import { UtilisateurService } from '../../shared/service/utilisateur.service';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+  /* Fontionnalités UI */
   public method_visa:string= "block_none";
   public method_paypal:string = "block_none";
   public method_ecart:string = "block_none";
-
+  /* Initialise des attributs une liaision */
   livraison:livraison = {nom:"",prenom :"" , adresse : "" , code_postal : "" , ville : "" , pays : "" , telephone : ""}
   nom:string = "";
   prenom:string ="";
@@ -26,6 +27,7 @@ export class PaymentComponent implements OnInit {
   pays :string ="";
   telephone :string = "";
   methode_paiement : string= "";
+  /* Initialise des attributs une commande */
   public commande:Commande ={
     idCommande :"",
     emailUtilisateur:"",
@@ -37,6 +39,7 @@ export class PaymentComponent implements OnInit {
   nomUtilisateur : string = "";
   email:any = localStorage.getItem('email');
   prixTotal : number =0;
+  /* Méthode Visa */
   changePaymentMethod_Visa()
   {
     if((this.method_visa=="block_none"&&this.method_paypal!="block_none")||(this.method_visa=="block_none"&&this.method_ecart!="block_none") )
@@ -49,6 +52,7 @@ export class PaymentComponent implements OnInit {
       this.method_visa="method";
    
   }
+  /* Méthode Paypal */
   changePaymentMethod_Paypal()
   {
     if((this.method_paypal=="block_none"&&this.method_visa!="block_none")||(this.method_paypal=="block_none"&&this.method_ecart!="block_none") )
@@ -60,7 +64,7 @@ export class PaymentComponent implements OnInit {
     else
       this.method_paypal="method paypal";
   }
-
+  /* Méthode Ecart */
   changePaymentMethod_Ecart()
   {
     if((this.method_ecart=="block_none"&&this.method_visa!="block_none")||(this.method_ecart=="block_none"&&this.method_paypal!="block_none") )
@@ -74,6 +78,7 @@ export class PaymentComponent implements OnInit {
   }
 
   constructor(private cS:CommandeService, private router:Router, private authVali: AuthValideService, private uS:UtilisateurService) {
+    /* Récupère des données d'une commande à partir de route /laision par BehaviorSujet */
     this.cS.commandeUtilisateur.subscribe((data)=>
     {
       this.commande=data

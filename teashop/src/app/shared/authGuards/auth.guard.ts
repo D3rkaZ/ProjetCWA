@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+
 import { Observable } from 'rxjs';
 import { AuthDelyService } from './auth-dely.service';
 
@@ -8,12 +9,21 @@ import { AuthDelyService } from './auth-dely.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private auth_dely: AuthDelyService)
+  constructor(private auth_dely: AuthDelyService ,private router:Router)
   {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.auth_dely.isAuthorized;
+      if(this.auth_dely.isAuthorized)
+      {
+        return this.auth_dely.isAuthorized;
+      } 
+      else
+      {
+          this.router.navigate(['/cart'])
+        return this.auth_dely.isAuthorized
+      }
+
   }
   
 }

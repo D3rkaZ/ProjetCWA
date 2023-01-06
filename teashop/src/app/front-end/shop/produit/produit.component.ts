@@ -17,7 +17,7 @@ import { Utilisateur } from 'src/app/shared/modele/utilisateur';
 })
 
 export class ProduitComponent implements OnInit {
-
+/* Initialise un objet produit */
   produitObjet= {
     id : '',
     nom : '' ,
@@ -38,7 +38,7 @@ export class ProduitComponent implements OnInit {
 
   public panier: panierItem[] = []; 
   constructor(private activeRoute: ActivatedRoute, private pS: ProduitsService , private panierSer:PanierService , private uS:UtilisateurService , private router:Router) {
-
+    /* Récupèrer le panier à partir au cpt ShopComponent */
     this.panierSer.panierutilisateur.subscribe((data:any)=>
     {
       this.panier =data;
@@ -46,6 +46,7 @@ export class ProduitComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    /* ActiveRouteAngular */
     this.activeRoute.paramMap.subscribe(params =>
       {
         const id :any= params.get('id');
@@ -63,7 +64,7 @@ export class ProduitComponent implements OnInit {
           })
       })
   }
-
+  /* Change la quantité du produit avant de le mettre dans panier */
   minus_qty()
   {
     if(this.produitObjet.qte > 1)
@@ -75,7 +76,7 @@ export class ProduitComponent implements OnInit {
     this.produitObjet.qte++;
   }
 
-
+  /* La méthode addPanier permet rajouter un produit dans panier (exactement la même problème que celle au component ShopComponent) */
   addPanier()
   {
     let token:any = localStorage.getItem("token");
@@ -138,10 +139,6 @@ export class ProduitComponent implements OnInit {
         
       )
       this.produitObjet.qte = 1 ;
-      // for(let panierItem of this.panier)
-      // {
-      //   this.totalPrix += panierItem.qteProduit * panierItem.prixProduit
-      // }
 
     }
     else

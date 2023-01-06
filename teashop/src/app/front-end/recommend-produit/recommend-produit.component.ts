@@ -18,6 +18,7 @@ export class RecommendProduitComponent implements OnInit {
 
   
   ngOnInit(): void {
+    /* l'appel la fonction getProduitByType dans ProduitService qui permet de chercher des produit par type  */
     this.pS.getProduitByType(this.typeproduit).subscribe(res =>
       {
         this.produitList = res.map((e:any)=>
@@ -29,6 +30,7 @@ export class RecommendProduitComponent implements OnInit {
       });
   }
 
+  /* Activate Routage */
   goToProduit(event:any)
   {
     var url:string = "/produit/"+event.id+"/"+event.type;

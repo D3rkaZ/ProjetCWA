@@ -12,19 +12,20 @@ import { AuthLoginService } from 'src/app/shared/service/auth-login.service';
 })
 export class LoginComponent implements OnInit {
 
+  /* des fonctionnalité UI */
   block_connection:string = "block_connection_switch";
   block_creation:string = "block_creation";
   form_connection:string="form_connection";
   form_creation:string="form_creation_switch";
   Row2_login_form:string="Row2_login_form";
-
+  /* Initialise des attributs d'un utilisateur */
   id:string='';
   nom:string='';
   prenom:string='';
   date_naissance='';
   email:string ="";
   mdp:string ="";
-
+  /* session de connexion  */
   session_connecte:any;
   utilisateur:Utilisateur = {
     id:'',
@@ -41,11 +42,18 @@ export class LoginComponent implements OnInit {
   newPassword:string="";
 
   constructor(private auth:AuthLoginService, private uS:UtilisateurService, private router:Router) { 
+
+    /* localStorage : une méthode stockage de données en local du côte cliente
+    * email : email de l'utilisateur (par défaut : none)
+    * token : token de connexion de l'utilisateur (True/False)
+    */
+
     this.session_connecte = localStorage.getItem("token");
 
     if(localStorage.getItem("token")=="true")
     {
       let email:any = localStorage.getItem("email");
+      /* l'appel la fonction getUtilisateurByEmail par UtilisateurService qui permet à récupèrer d'utilisateur par email */
       this.uS.getUtilisateurByEmail(email).then((doc)=>
       {
         if(doc.exists)
@@ -59,6 +67,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  /* Méthode Login */
   login()
   {
     if(this.email=="")
@@ -71,11 +80,12 @@ export class LoginComponent implements OnInit {
       alert("Entrez votre mot de passe !");
       return;
     }
+    /* Méthode auth de AngularFireBase */
     this.auth.login(this.email,this.mdp);
     this.email="";
     this.mdp="";
   }
-
+  /* Crée d'un utilisateur  */
   register()
   {
     if(this.nom==''||this.prenom==''||this.date_naissance==''||this.email==''||this.mdp=='')
@@ -89,15 +99,19 @@ export class LoginComponent implements OnInit {
     this.utilisateur.email = this.email;
     this.utilisateur.mdp = this.mdp;
     this.utilisateur.panier =[];
+    /* l'appel la méthode createUser() aui permet à créer d'un nouveau utilisateur */
     this.auth.createUser(this.utilisateur);
     this.uS.addUser(this.utilisateur);
   }
 
+  /* Méthode Logout */
   logout()
   {
+    /* Méthode logout de AngularFireBase */
     this.auth.logout();
   }
 
+  /* Fonctionnalité UI */
   changeOptionConnection()
   {
     if (this.block_connection == "block_connection")
@@ -121,6 +135,7 @@ export class LoginComponent implements OnInit {
     this.block_connection = "block_connection";
   }
 
+  /* Mise à jour une nouvelle mot de passe */
   updatePassword()
   {
     this.auth.updateMdp(this.newPassword);

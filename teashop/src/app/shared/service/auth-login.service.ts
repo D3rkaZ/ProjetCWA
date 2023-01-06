@@ -17,14 +17,19 @@ export class AuthLoginService {
   constructor(private users:UtilisateurService,private fireauth : AngularFireAuth, private router : Router) { }
 
   // method login
-
   login(email:string,  password:string)
   {
     const auth = getAuth();
+    /* Utilise la méthode signInWithEmailAndPassword de AngularFireBase */
     this.fireauth.signInWithEmailAndPassword(email,password).then((userCredential)=>
     {
       const user = userCredential.user;
       const uid:any = user?.uid;
+    /* Définie des valeurs dans localStorage
+    * email : email de l'utilisateur (par défaut : none)
+    * token : token de connexion de l'utilisateur (True/False)
+    * uid : uid d'Utilisateur dès qu'il a connecté
+    */
       localStorage.setItem("uid",uid);
       localStorage.setItem("email",email);
       localStorage.setItem("token","true");
@@ -39,6 +44,7 @@ export class AuthLoginService {
   //logout 
   logout()
   {
+    /* Utilise la méthode signout de AngularFireBase */
     this.fireauth.signOut().then(() => {
       this.router.navigate(['/home']);
       localStorage.setItem("token","false");
@@ -52,6 +58,7 @@ export class AuthLoginService {
   //create an user
   createUser(utilisateur:Utilisateur)
   {
+    /* Utilise la méthode createUserWithEmailAndPassword dans AngularFireBase */
     const auth = getAuth();
     createUserWithEmailAndPassword(auth,utilisateur.email,utilisateur.mdp)
     .then((userCredential) => {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthPaymentService } from './auth-payment.service';
 
@@ -7,7 +7,7 @@ import { AuthPaymentService } from './auth-payment.service';
   providedIn: 'root'
 })
 export class AuthPaymentGuard implements CanActivate {
-  constructor(private authpay:AuthPaymentService)
+  constructor(private authpay:AuthPaymentService, private router:Router)
   {
 
   }
@@ -15,7 +15,15 @@ export class AuthPaymentGuard implements CanActivate {
  canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authpay.isAuthorized;
+      if(this.authpay.isAuthorized)
+      {
+        return this.authpay.isAuthorized;
+      }
+      else
+      {        
+        this.router.navigate(['/cart']);
+        return this.authpay.isAuthorized;
+      }
   }
   
 }

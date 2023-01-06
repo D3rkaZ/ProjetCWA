@@ -15,7 +15,7 @@ export class CartShopComponent implements OnInit {
   public height_shop:string="cart_shop_item";
   @Input() panier:panierItem[] = [];
   ngOnInit(): void {
-
+    /* Fonctionnalités UI */
   }
   changeTaillePanier()
   {

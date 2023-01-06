@@ -10,6 +10,8 @@ import { EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthPaymentService } from '../../shared/authGuards/auth-payment.service';
 
+
+
 @Component({
   selector: 'app-delivery',
   templateUrl: './delivery.component.html',
@@ -65,25 +67,34 @@ export class DeliveryComponent implements OnInit {
    /* Valide la commande */
    validerCommande()
    {
-    this.livraison.nom = this.nom;
-    this.livraison.prenom = this.prenom;
-    this.livraison.telephone = this.telephone;
-    this.livraison.code_postal = this.code_postal;
-    this.livraison.adresse = this.adress;
-    this.livraison.pays = this.pays;
-    this.livraison.ville = this.ville;
 
-    this.commande.emailUtilisateur = this.utilisateur.email,
-    this.commande.panier = this.panier ,
-    this.commande.addr_livraison = this.livraison,
+    if(this.nom !="" && this.prenom!="" && this.adress!="" && this.code_postal!="" && this.telephone!="" && this.pays!="" &&  this.ville!="")
+    {
+      this.livraison.nom = this.nom;
+      this.livraison.prenom = this.prenom;
+      this.livraison.telephone = this.telephone;
+      this.livraison.code_postal = this.code_postal;
+      this.livraison.adresse = this.adress;
+      this.livraison.pays = this.pays;
+      this.livraison.ville = this.ville;
+
+      this.commande.emailUtilisateur = this.utilisateur.email,
+      this.commande.panier = this.panier ,
+      this.commande.addr_livraison = this.livraison,
+      /* Envoie cette commande sur la route /payment  */
+      this.cS.envoieCommande(this.commande);
+      alert("Enregistrement votre commande !");
+      /* Active l'authorise d'accès au route /payment */
+      this.authPay.activeAuth();
+      this.router.navigate(['/pay']);
+    }
+    else
+    {
+      alert("Votre coordonnées ne sont pas complétes !")
+    }
     
-    //this.cS.createCommande(this.commande);
-
-    this.cS.envoieCommande(this.commande);
-    alert("Enregistrement votre commande !");
-    this.authPay.activeAuth();
-    this.router.navigate(['/pay']);
    }
+   /* Calcule le prix total du panier */
    calculTotal()
    {
      this.prixTotal = 0; 

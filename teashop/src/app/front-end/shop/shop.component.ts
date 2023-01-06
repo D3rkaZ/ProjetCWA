@@ -19,13 +19,14 @@ import { AuthAdminService } from '../../shared/authGuards/auth-admin.service';
 })
 
 export class ShopComponent implements OnInit {
- 
+ /* Fonctionnalités UI */
   public class_row_filter:string = "Row_filter_display-none";
   public icon_plus = "bx bx-plus";
   public filter_parfum:string[]=["Nature","Fruité","Agruments","Floral","Fleurs","Menthe"];
   public filter_type:string[]=["Thé Noir", "Thé Vert" , "Thé Blanc", "Matcha","Infusion","Rooibos","OOlong","Maté"];
   public filter_pays:string[]=["Chine","Japon","Espagne","VietNam","France","Pays-Bas"];
   public option_trie:string[]=["Pertinence","Prix décroissant","Prix croissant"]
+  /* Initialise des valeurs filtées */
   paysFilter:string = "";
   typeFilter:string = "";
   parfumFilter:string = "";
@@ -36,11 +37,11 @@ export class ShopComponent implements OnInit {
   nameUser:string="";
 
 
-  //Test panier 
+  // panier 
   panier : panierItem[]=[];
   totalPrix : number =0;
   isConnected:any="";
-  test:any[]=[];
+  // test:any[]=[];
 
   utilisateur:Utilisateur = {
     id:'',
@@ -52,10 +53,9 @@ export class ShopComponent implements OnInit {
     role:'',
     panier: [],
   }
-  u:Utilisateur[] = [];
-
 
   constructor(private pS:ProduitsService, private route: ActivatedRoute, private router:Router,private paniS:PanierService,private uS:UtilisateurService,private authAdmin:AuthAdminService) {
+    /* l'appel la fonction getAllproduit dans ProduitService qui permet à récupérer des produits en ventes */
     this.getAllProduit();
     this.isConnected=localStorage.getItem("token");
     if(this.isConnected=="true")
@@ -72,13 +72,13 @@ export class ShopComponent implements OnInit {
       })
     }
   }
-
+  /* Fonctionnalités UI */
   changeDisplay()
   {
     this.class_row_filter = this.class_row_filter == "Row_filter" ? "Row_filter_display-none" : "Row_filter";
     this.icon_plus = this.icon_plus == "bx bx-plus" ? "bx bx-x" : "bx bx-plus";
   }
-
+  /* Sélectionne des produits par type, pays, parfum */
   ProduitsFilter()
   {
     this.produitFilter.set("type",this.typeFilter);
@@ -103,6 +103,7 @@ export class ShopComponent implements OnInit {
       keys.push(key);
 
     }
+    /* l'appel la méthode getProduitsFilter dans ProduitService qui permet à envoyer des produits sélectionnées */
     this.pS.getProduitsFilter(this.produitFilter,nb_attr).subscribe(res =>
       {
         this.produitList = res.map((e:any)=>
@@ -116,6 +117,7 @@ export class ShopComponent implements OnInit {
     this.changeDisplay();
   }
 
+  /* Efface les filtrages */
   EffacerFilter()
   {
     this.paysFilter="";
@@ -124,7 +126,8 @@ export class ShopComponent implements OnInit {
     this.getAllProduit();
     this.changeDisplay();
   }
-//
+
+// la méthode getAllProduits() qui permet à récupèrer des produits en ventes dans la bdd
   getAllProduit()
   {
     this.pS.getAllProduits().subscribe(res =>
@@ -138,7 +141,7 @@ export class ShopComponent implements OnInit {
         this.nb_produits = this.produitList.length;
       })
   }
-
+/* La méthode triée par le prix */
   onChange(event:any)
   {
     if(event.target.value !== "Pertinence")
@@ -153,7 +156,7 @@ export class ShopComponent implements OnInit {
         this.nb_produits = this.produitList.length;
       })
   }
-
+  /* Change le quantité du produit avant de le mettrer dans le panier */
   minus_qty(produit:any)
   {
     if(produit.qte > 1)
@@ -171,12 +174,19 @@ export class ShopComponent implements OnInit {
     
   }
 
+  /* La méthode addPanier permet à rajouter un produit dans le panier propre de chaque utilisateur */
   addPanier(event:any)
   {
+    /* localStorage : une méthode stockage de données en local du côte cliente
+    * email : email de l'utilisateur (par défaut : none)
+    * token : token de connexion de l'utilisateur (True/False)
+    * Utilisateur peut rajouter un produit dans panier dès qu'il a déjà connecté au site
+    */
     let token:any = localStorage.getItem("token");
     if (token== "true")
     {
       this.totalPrix =0;
+      /* Initialise un objet panierItem qui représente un produit dans panier*/
       let panierItem: panierItem =
       {
         idProduit : event.id ,
@@ -187,6 +197,7 @@ export class ShopComponent implements OnInit {
         qteStock : event.qteStock
       }
       let email:any = localStorage.getItem("email");
+      /* Dès qu'on a rajouté un produit dans panier qu'il faudra miser à jour la quantité stockée de chaque produit */
       this.uS.getUtilisateurByEmail(email).then((doc) =>
         {
           if (doc.exists) {
@@ -214,7 +225,7 @@ export class ShopComponent implements OnInit {
               this.pS.updateQteStock(panierItem,event.qteStock)
               panierItem.qteStock = event.qteStock
             }
-              
+            /* Mise à jour le panier dans la bdd */
             this.uS.getDoc(email).update(
               {
                 panier: this.panier
@@ -225,37 +236,35 @@ export class ShopComponent implements OnInit {
           }
           else
           {
-
             alert("Il nous reste " + stock + " produits !")
           }
         }
         }
-        
       )
       event.qte = 1 ;
       for(let panierItem of this.panier)
       {
         this.totalPrix += panierItem.qteProduit * panierItem.prixProduit
       }
-
     }
     else
       this.router.navigate(['/login'])
   }
 
-  getAllPaniers()
-  {
-    this.paniS.getAllProduits().subscribe(res =>
-      {
-        this.test= res.map((e:any)=>
-        {
-          const data = e.payload.doc.data();
-          data.id = e.payload.doc.id;
-          return data;
-        })
-      })
-  }
+  // getAllPaniers()
+  // {
+  //   this.paniS.getAllProduits().subscribe(res =>
+  //     {
+  //       this.test= res.map((e:any)=>
+  //       {
+  //         const data = e.payload.doc.data();
+  //         data.id = e.payload.doc.id;
+  //         return data;
+  //       })
+  //     })
+  // }
 
+  /* Button de admin pour modifier des produits en ventes */
   admin_add()
   {
     this.authAdmin.activeAuth();
@@ -270,7 +279,11 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     let email:any = localStorage.getItem("email");
-    this.uS.getUtilisateurByEmail(email).then((doc) =>
+    let token:any = localStorage.getItem("token");
+    /* L'appel la méthode getUtilisateurByEmail pour récupèrer des données d'utilisateur dès qu'il a connecté */
+    if(token == "true")
+    {
+      this.uS.getUtilisateurByEmail(email).then((doc) =>
       {
         if (doc.exists) {
           const data:any = doc.data();
@@ -280,5 +293,7 @@ export class ShopComponent implements OnInit {
           this.uS.envoieUtilisateurObj(this.utilisateur);
         }
       })
+    }
+
   }
 }

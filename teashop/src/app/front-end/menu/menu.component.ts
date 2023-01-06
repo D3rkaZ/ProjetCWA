@@ -10,6 +10,10 @@ import { Utilisateur } from '../../shared/modele/utilisateur';
 })
 
 export class MenuComponent implements OnInit {
+    /* localStorage : une méthode stockage de données en local du côte cliente
+    * email : email de l'utilisateur (par défaut : none)
+    * token : token de connexion de l'utilisateur (True/False)
+    */
   public uid:any=localStorage.getItem("uid");
   public email:any=localStorage.getItem("email");
   public token:any=localStorage.getItem("token");
@@ -30,6 +34,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     if(this.token=="true")
     {
+      /* Recrute d'utilisateur par email */
       this.uS.getUtilisateurByEmail(this.email).then((doc)=>
       {
         if(doc.exists)

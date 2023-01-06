@@ -10,6 +10,7 @@ import { CommandeService } from '../../shared/service/commande.service';
 })
 export class ValideComponent implements OnInit {
 
+  /* Initialise un objet livraison et commande */
   livraison:livraison = {nom:"",prenom :"" , adresse : "" , code_postal : "" , ville : "" , pays : "" , telephone : ""}
   nom:string = "";
   prenom:string ="";
@@ -28,6 +29,7 @@ export class ValideComponent implements OnInit {
   }
   constructor(private cS:CommandeService) { 
 
+    /* Récupèrer la commande au component ShopComponent */
     this.cS.commandeUtilisateur.subscribe((data)=>
     {
       this.commande = data

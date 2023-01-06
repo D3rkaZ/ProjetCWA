@@ -18,7 +18,7 @@ export class ProduitsService {
     //get all produits
     getAllProduits()
     {
-      return this.database.collection('/Produits').snapshotChanges();
+      return this.database.collection<Produit>('/Produits').snapshotChanges();
     }
     //get Produit by price ASC
     getProduitByPrix(s:string)

@@ -20,6 +20,7 @@ div.Row2_cart_inner
     margin: 0 auto;
     height: auto;
     background-color: white;
+    overflow: hidden;
 }
 div.cart_contenu
 {

@@ -12,14 +12,22 @@ describe('ProduitsService', () => {
     let service: ProduitsService;
     let angularFirestoreSpy: any;
     let fsCollection: any;
+    let fsDoc: any;
     let helper: Helper;
 
     beforeEach(() => {
         helper = new Helper();
-        angularFirestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection']);
-        fsCollection = jasmine.createSpyObj('collection', ['snapshotChanges']);
+        angularFirestoreSpy = jasmine.createSpyObj('AngularFirestore', ['collection', 'createId']);
+        fsCollection = jasmine.createSpyObj('collection', ['snapshotChanges', 'doc']);
+        fsDoc = jasmine.createSpyObj('AngularFirestoreDocument', ['set']);
+
         angularFirestoreSpy.collection.and.returnValue(fsCollection);
+        angularFirestoreSpy.createId.and.returnValue("id");
+
         fsCollection.snapshotChanges.and.returnValue(of([]));
+        fsCollection.doc.and.returnValue('');
+
+        fsDoc.set.and.returnValue();
 
         TestBed.configureTestingModule({
             providers: [
@@ -83,7 +91,7 @@ describe('ProduitsService', () => {
         describe('getProduitByPrix', () => {
             describe('Appel Méthode', () => {
                 let testCase:string[] = ['', 'Prix croissant', 'décroissant', 'autre'] // Les différents arguments à tester
-                for(let test in testCase){
+                for(let test of testCase){
                     describe('Argument ' + test, () => {
                         beforeEach( () => {
                             service.getProduitByPrix(test);
@@ -98,6 +106,58 @@ describe('ProduitsService', () => {
                 }
             });
         });
+        describe('getProduitFilter', () => {
+            describe('Appel Méthode', () => {
+                let mapParam: Map<string, string>;
+                it('Sans filtre', () => {
+                    // Utilisation de getAllProduits
+                    service.getProduitsFilter(mapParam, 0);
+                    expect(angularFirestoreSpy.collection).toHaveBeenCalledWith('/Produits');
+                });
+                it('Avec 1 filtre', () => {
+                    mapParam = new Map<string, string>([["type", "infusion"]]);
+                    service.getProduitsFilter(mapParam, 1);
+                    expect(angularFirestoreSpy.collection).toHaveBeenCalledTimes(1);
+                })
+                it('Avec 2 filtres', () => {
+                    mapParam = new Map<string, string>([["type", "infusion"], ["parfum", "Nature"]]);
+                    service.getProduitsFilter(mapParam, 2);
+                    expect(angularFirestoreSpy.collection).toHaveBeenCalledTimes(1);
+                })
+                it('Avec 3 filtres', () => {
+                    mapParam = new Map<string, string>([["type", "infusion"], ["parfum", "Nature"], ["pays", "Chine"]]);
+                    service.getProduitsFilter(mapParam, 3);
+                    expect(angularFirestoreSpy.collection).toHaveBeenCalledTimes(1);
+                })
+                it('Avec 4 filtres', () => {
+                    mapParam = new Map<string, string>([["type", "infusion"], ["type", "infusion"], ["parfum", "Nature"], ["pays", "Chine"]]);
+                    service.getProduitsFilter(mapParam, 4);
+                    expect(angularFirestoreSpy.collection).toHaveBeenCalledWith('/Produits');
+                })
+            });
+        });
+        //describe('ajoutProduits', () => {
+        //    describe('Appel Méthode', () => {
+        //        it('Sans produit', () => {
+        //            const p:Produit = {
+        //                id: "abc0",
+        //                nom: "Produit0",
+        //                titre: "the fruite",
+        //                url:"lambda0",
+        //                type: "tp",
+        //                parfum: "fruite",
+        //                pays: "france",
+        //                prix:6,
+        //                description:"description",
+        //                suggestion:"sugg",
+        //                qte: 0,
+        //                qteStock:12
+        //            }
+        //            service.addProduits(p);
+        //            expect(angularFirestoreSpy.collection).toHaveBeenCalledWith('/Produits');
+        //        });
+        //    });
+        //});
     });
 
     describe('Test d\'intégration', () => {
@@ -125,6 +185,9 @@ describe('ProduitsService', () => {
                 });
             });
         });
+        // A teste pour les cas où la fonction est appellée avec '', 'Prix croissant', 'autre'
+        //it('Appel getProduitByPrix avec un produit le renvoie',  () => {  }));
+        //it('Appel getProduitByPrix avec plusieurs produit le renvoie dans l\'ordre voulue', () => {});
     });
 });
 

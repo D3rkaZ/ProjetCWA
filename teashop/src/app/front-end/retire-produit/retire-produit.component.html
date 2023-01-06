@@ -23,9 +23,9 @@
                         <p style="text-align:center">{{produit.prix}}0 €</p>
                     </td>
                     <td class="qty_produit">
-                        <input type="number" [value]="produit.qteStock" class="qteStock" min="0" (click)="updateQteStock(produit,$event)">
+                        <input type="number" [value]="produit.qteStock" class="qteStock" min="0" (change)="updateQteStock(produit,$event)">
                     </td>
-                    <td><p style="color:red ;"><i class='bx bx-trash' (change)="deleteProduit(produit)"></i></p></td>
+                    <td><p style="color:red ;"><i class='bx bx-trash' (click)="deleteProduit(produit)"></i></p></td>
                 </tr>
             </tbody>
         </table>

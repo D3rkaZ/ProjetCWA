@@ -69,12 +69,10 @@
     <div class="Row3_shop" >
         <div class="Row3_shop_produit"> 
             <div class="Row3_shop_produit_item"  *ngFor="let produit of produitList">
-                <div class="hidden" *ngIf="produit.qteStock <= 0" style="position : absolute;margin-left:0 auto" ><p style="text-align:center">Le produit n'est plus disponible !</p></div>
                 <a [routerLink]="['/produit',produit.id,produit.type]" style="text-decoration:none;color:unset">
                     <img class="produit_img" [src]="produit.url">
                     <p class="produit_name">{{produit.nom}}</p>
                     <p class="produit_couleur">{{produit.titre}}</p>
-                    <p class="produit_desc">Un Grand Cru aux  gourmand aux notes de chocolat, de vanille, d'amandes et de fruits.</p>
                 </a>
                     <div class="panier_produit">
                         <div class="produit_prix">
@@ -87,7 +85,7 @@
                         </div>
                         <button class="ajoute_panier" (click)="addPanier(produit)">AJOUTER AU PANIER</button>
                     </div>
-                
+                    <div class="hidden" *ngIf="produit.qteStock <= 0" style="position : absolute; translate: 50%;" ><p style="text-align:center">Le produit n'est plus disponible !</p></div>
             </div>
         </div>
     </div>

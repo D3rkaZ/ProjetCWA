@@ -85,7 +85,7 @@
                         </div>
                         <button class="ajoute_panier" (click)="addPanier(produit)">AJOUTER AU PANIER</button>
                     </div>
-                    <div class="hidden" *ngIf="produit.qteStock <= 0" style="position : absolute; translate: 50%;" ><p style="text-align:center">Le produit n'est plus disponible !</p></div>
+                    <div class="hidden" *ngIf="produit.qteStock <= 0" style="position : relative" ><p>Le produit n'est plus disponible !</p></div>
             </div>
         </div>
     </div>

@@ -16,7 +16,6 @@
                         <ul class="list_payment_method">
                             <li class="payment_method_item">
                                 <div class="title_method" (click)="changePaymentMethod_Visa()">
-                                    <input type="radio" name="method_payment">
                                     <img class="visa_method" src="https://www.savepng.com/file/thumb/2020-06/25654-2-major-credit-card-logo-transparent-thumb.png">
                                     <p>Carte de crédit</p>
                                 </div>
@@ -58,7 +57,6 @@
                             <li class="payment_method_item">
                                 
                                 <div class="title_method" (click)="changePaymentMethod_Ecart()">
-                                    <input type="radio" name="method_payment">
                                     <img class="visa_method" src="https://www.boesner.fr/modules/giftcard/img/templates/2/2-thickbox.jpg">
                                     <p>e-Cart cadeau</p>
                                 </div>
@@ -78,7 +76,6 @@
                             </li>
                             <li class="payment_method_item paypal">
                                 <div class="title_method" (click)="changePaymentMethod_Paypal()">
-                                    <input type="radio" name="method_payment">
                                     <img class="visa_method" src="https://tap2pay.me/wp-content/uploads/2018/12/PayPal-Header-720x480-1.jpg">
                                     <p>Paypal</p>
                                 </div>
@@ -107,7 +104,7 @@
                         <p class="border_text">Total Panier : {{prixTotal}} €</p>
                     </div>
                     <div class="items_template">
-                        <p class="border_text">5 articles dans le panier <i class='bx bx-chevron-down' ></i></p>
+                        <p class="border_text">{{nbTotalItems}} articles dans le panier <i class='bx bx-chevron-down' ></i></p>
                         <ul class="list_items_resume">
                             <li class="item_resume" *ngFor="let panierItem of commande.panier">
                             <div style="color :#546a2a; font-weight : bolder">

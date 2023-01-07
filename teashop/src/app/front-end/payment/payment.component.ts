@@ -39,6 +39,7 @@ export class PaymentComponent implements OnInit {
   nomUtilisateur : string = "";
   email:any = localStorage.getItem('email');
   prixTotal : number =0;
+  nbTotalItems: number = 0;
   uid:any = localStorage.getItem("uid");
   /* Méthode Visa */
   changePaymentMethod_Visa()
@@ -85,6 +86,8 @@ export class PaymentComponent implements OnInit {
       this.commande=data
       this.adresse_livraison = this.commande.addr_livraison.adresse + " " +this.commande.addr_livraison.code_postal + " " + this.commande.addr_livraison.ville + " " + this.commande.addr_livraison.pays
       this.nomUtilisateur=     this.commande.addr_livraison.nom + " " + this.commande.addr_livraison.prenom;
+
+      this.calculTotal();
     })
 
    }
@@ -142,6 +145,7 @@ export class PaymentComponent implements OnInit {
      for (let panierItem of this.commande.panier)
      {
        this.prixTotal += panierItem.qteProduit * panierItem.prixProduit
+       this.nbTotalItems += panierItem.qteProduit;
      }
    }
 
